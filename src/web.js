@@ -9,7 +9,7 @@ dotenv.config();
 import "./models/Video";
 import "./models/Comment";
 import "./models/User";
-const PORT = 8001;
+const PORT = process.env.PORT || 4000;
 const MONGO_URL = process.env.MONGO_URL
 
 const handleListening = () => console.log(`${MONGO_URL}:${PORT}`);

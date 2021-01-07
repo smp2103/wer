@@ -1,0 +1,16 @@
+extends layouts/main
+
+block content
+    .form-container
+        form(method='post' enctype='multipart/form-data' action=`/img${routes.uploadImage}`)
+            .img-wrapper
+                img#preview(src='https://rppproto.s3.amazonaws.com/image/b2c6359a3df7769020a2df74fe18a94d' width='800' alt='선물을 넣어주세요!!')
+                div 선물넣기!
+            input(type='file' id="getFile" accept="image/*" name='img')
+            input(type="text", placeholder="상자 닉네임", name="title", required=true)
+            textarea(name="description", placeholder="선물상자 개봉시 친구에게 전달 될 편지입니다!", required=true)
+
+            input(type='submit' value='전송')
+
+
+    

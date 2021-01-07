@@ -1,0 +1,11 @@
+extends layouts/main
+
+
+block content
+    .form-container
+        form(action=`${routes.postDetail(post.id)}${routes.imageDetail(image.id)}/edit-image`, method="post")
+            input(type="text", placeholder="Title", name="title", value = image.title)
+            textarea(name="description", placeholder="Description")=image.description
+            input(type="submit", value="Update Image")
+        a.form-container__link.form-container__link--delete(href=`${routes.postDetail(post.id)}${routes.deleteImage(image.id)}`)
+            button Delete Image

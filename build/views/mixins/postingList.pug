@@ -1,0 +1,30 @@
+mixin postingList(post={})
+    div(class="grid-container")
+        .col
+            .information-container.scale
+                .u-profile
+                    img.u-avatar(src=post.user.avatarUrl)
+                    .u-container
+                        .u-info #{post.user.univ} / #{post.user.mbti} / #{post.user.age}살
+                        .u-name #{post.user.name}
+                .u-description #{post.description}
+                .u-likeButton
+                    .like-wrapper
+                        button(class="like", value = post.user.id )
+                            img(src="/static/heart.svg" class="heart")
+                        .likeNum #{post.user.like}
+    
+    //- div(class="grid-container")
+    //-     .col
+    //-         .information-container.scale
+    //-             .div-container#first
+    //-                 a(href=`${routes.postDetail(post.id)}`) #{post.title} 
+    //-             .div-container#second
+    //-                 div #{post.description}
+    //-             .div-container#third
+    //-                 div #{post.like}
+    //-                     div(id = `${post.id}`) 
+                    
+                    
+
+    

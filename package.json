@@ -31,6 +31,8 @@
     "express-session": "^1.17.1",
     "get-blob-duration": "^1.1.2",
     "helmet": "^3.23.3",
+    "heroku": "^7.47.7",
+    "heroku-cli": "^7.0.9",
     "mini-css-extract-plugin": "^0.9.0",
     "mongoose": "^5.9.25",
     "mongoose-type-url": "^2.1.0",
@@ -38,7 +40,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
-    "ngrok": "^3.2.7",
+    "ngrok": "^3.4.0",
     "node-sass": "^4.14.1",
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.7",
@@ -52,33 +54,28 @@
     "rd": "^2.0.1",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
-    "shx": "^0.3.2",
+    "shx": "^0.3.3",
     "style-loader": "^1.2.1",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/web.js --delay 2 --ignore '.scss' --ignore 'static' ",
-    "dev:assets": "cd src && WEBPACK_ENV=development webpack -w",
-    "build:assets": "cd src && WEBPACK_ENV=production webpack",
-    "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
-    "copyAll": "cp -R src/static build && cp -R src/views build",
+    "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack -w",
+    "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack",
+    "build:server": "babel src --out-dir build",
+    "copyAll": "xcopy src\\static build\\static /d /e /h /c /y /i && xcopy src\\views build\\views /d /e /h /c /y /i",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
-    "prebuild": "rm -rf build",
-    "tunnel": "lt --port 4000",
-    "start": "PRODUCTION=true node build/web.js",
+    "prebuild": "rd /s \"build\"",
+    "tunnel": "ngrok http 4000",
+    "start": "node build/web.js",
     "prestart": "npm run build"
   },
   "devDependencies": {
     "eslint": "^7.5.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/smp2103/WERO.git"
-  },
   "keywords": [],
   "bugs": {
     "url": "https://github.com/smp2103/WERO/issues"
-  },
-  "homepage": "https://github.com/smp2103/WERO#readme"
+  }
 }

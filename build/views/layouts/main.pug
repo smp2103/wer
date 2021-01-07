@@ -1,0 +1,26 @@
+doctype html
+html
+    head   
+        title #{pageTitle} | #{siteName}
+        script(src="https://kit.fontawesome.com/92912bbf6a.js", crossorigin="anonymous")
+        link(rel="stylesheet", href="/static/styles.css")
+        meta(name='viewport' content='width=device-width, initial-scale=1.0,user-scalable=no, maximum-scale=1, minimum-scale=1')
+        link(href='https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap' rel='stylesheet')
+        <link href="https://fonts.googleapis.com/css?family=Stylish:400" rel="stylesheet">
+
+
+    body
+        include ../partials/header
+        //- include ../partials/headerSection
+        //-.searchForm
+            .form-wrapper
+                form(action=`${routes.search}`,method= "get")
+                    input(type="text", placeholder="Search by term..",name="term")
+        
+        section
+            .section1
+                .content(id='content')
+                    block content
+
+        include ../partials/footer
+        script(src="/static/main.js")
