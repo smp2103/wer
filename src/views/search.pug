@@ -1,0 +1,26 @@
+extends layouts/main
+include mixins/videoBlock
+include mixins/imageBlock
+//- main.pug의 내용을 복사하여 쓰겠다
+//- block content 의 내용만 작성하면 됨!
+
+block content
+    .search__header 
+        h3 Searching By #{searchingBy}
+    .home-videos
+        if videos.length ===0
+            h5 No Videos Found
+        each item in videos
+            +videoBlock({
+                title: item.title,
+                views: item.views,
+                videoFile: item.videoFile,
+                id : item.id
+            })
+        each item in images
+            +imageBlock({
+                    id : item.id,
+                    title: item.title,
+                    views: item.views,
+                    img: item.fileUrl
+                })

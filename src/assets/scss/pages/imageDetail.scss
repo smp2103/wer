@@ -1,0 +1,99 @@
+.image-detail__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .image__info {
+        width: 100%;
+        max-width: 850px;
+        margin-top: 25px;
+
+        button {
+            width: 100px;
+            margin-bottom: 25px;
+        }
+
+        .image__author {
+            a {
+                color: #3498db;
+            }
+        }
+
+        .image__title,
+        .image__views,
+        .image__description {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .image__title {
+            font-size: 22px;
+            font-weight: 300;
+        }
+
+        .image__views {
+            font-size: 14px;
+        }
+
+        .image__description {
+            font-size: 16px;
+        }
+    }
+
+    .image__comments {
+        margin-top: 25px;
+        text-align: center;
+
+        .image__comment-number {
+            font-size: 18px;
+        }
+
+        .add__comment {
+            margin-top: 25px;
+            width: 100%;
+
+            input {
+                width: 100%;
+            }
+        }
+
+        .image__comments-list {
+            margin-top: 50px;
+
+            li {
+                background-color: #712a8830;
+                color: black;
+                padding: 15px;
+                border-radius: 20px;
+                border-bottom-left-radius: 0px;
+
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+
+                .commentSpan {
+                    .deleteButton {
+                        width: 5%;
+                        height: 100%;
+                        border: none;
+                        color: red;
+                        background-color: #712a8830;
+                        position: relative;
+                        right: 1px;
+                        box-shadow: none;
+
+                        &:hover {
+                            color: transparent;
+                            text-shadow: 0 0 0 #ff7055;
+                        }
+
+                        &:active {
+                            color: transparent;
+                            text-shadow: 0 0 0 #7d1424;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

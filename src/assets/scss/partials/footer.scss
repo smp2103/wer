@@ -1,0 +1,42 @@
+.footer{
+    width : 100%;
+    display : grid;
+    flex-direction: column;
+    align-items: center;
+    position:fixed;
+    left:0;
+    bottom:0;
+    border-top: solid 1px #d8d8d8;
+    background-color: #ffffff;
+    grid-template-columns: repeat(5,1fr);
+    height: 10%;
+    div{
+
+        font-family: 'Noto Sans KR', sans-serif;
+      
+        font-size: 1rem;
+      
+        font-weight: normal;
+      
+        font-stretch: normal;
+      
+        font-style: normal;
+      
+        line-height: normal;
+      
+        letter-spacing: normal;
+      
+        text-align: center;
+    }
+    .tab{
+        justify-self :center;
+        div{
+            font-size: 10px;
+        }
+    }
+
+
+
+
+    
+}

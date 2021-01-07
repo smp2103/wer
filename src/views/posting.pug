@@ -1,0 +1,86 @@
+extends layouts/main
+include mixins/postingList
+include mixins/userList
+
+block content
+
+    if loggedUser
+        .filters
+            div.univ-filter
+                form(action=routes.filter,method="post",id="filter")
+                    select(name='univ', id = "univFilter")
+                        option(value='' selected) 학교
+                        option(value='y') 연세대
+                        option(value='k') 고려대
+                    select(name='mbti', id = "mbtiFilter")
+                        option(value="" selected) MBTI
+                        option(value='ISTJ') ISTJ
+                        option(value="ISFJ") ISFJ
+                        option(value="INFJ") INFJ
+                        option(value="INTJ") INTJ
+                        option(value="ISTP") ISTP
+                        option(value="ISFP") ISFP
+                        option(value="INFP") INFP
+                        option(value="INTP") INTP
+                        option(value="ESTP") ESTP
+                        option(value="ESFP") ESFP
+                        option(value="ENFP") ENFP
+                        option(value="ENTP") ENTP
+                        option(value="ESTJ") ESTJ
+                        option(value="ESFJ") ESFJ
+                        option(value="ENFJ") ENFJ
+                        option(value="ENTJ") ENTJ
+                    input(type="submit" value='필터링',class="filterSubmit")
+        .myProfile
+            each item in me
+                +userList({
+                    id: item._id,
+                    name: item.name,
+                    description: item.description,
+                    sex: item.sex,
+                    link: item.link,
+                    avatarUrl: item.avatarUrl,
+                    age: item.age,
+                    univ: item.univ,
+                    mbti: item.mbti,
+                    like: item.like
+                })
+        //- .menu
+        //-     .posting-number 
+                //- div 진행중인 기획안&nbsp;#{posts.length}&nbsp;개
+            //- .posting-button-wrapper
+            //-     a(href=routes.newGift).giftButton
+            //-         button 기획서 작성하기
+
+        .users
+            each item in users
+                    +userList({
+                        id: item._id,
+                        name: item.name,
+                        description: item.description,
+                        sex: item.sex,
+                        link: item.link,
+                        avatarUrl: item.avatarUrl,
+                        age: item.age,
+                        univ: item.univ,
+                        mbti: item.mbti,
+                        like: item.like
+                    })
+    
+    else
+
+        .users
+            each item in users
+                    +userList({
+                        id: item._id,
+                        name: item.name,
+                        description: item.description,
+                        sex: item.sex,
+                        link: item.link,
+                        avatarUrl: item.avatarUrl,
+                        age: item.age,
+                        univ: item.univ,
+                        mbti: item.mbti,
+                        like: item.like
+                    })
+

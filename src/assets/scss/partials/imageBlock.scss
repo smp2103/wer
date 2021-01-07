@@ -1,0 +1,101 @@
+.imageBlock {
+  background-color: #faebd745;
+  button{
+    background-color: #faebd745;
+  }
+  .questionID{
+    display: none;
+  }
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  grid-template-rows: repeat(8,1fr);
+  border-radius: 8px;
+  width: 100%;
+  padding: 5%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border: 1px solid rgba(0,0,0,0.15);
+  .questionNumber{
+    grid-column: 1/2;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20%;
+    margin-bottom: 10px;
+    line-height: 2;
+  }
+  .questionScore{
+    grid-column: 3/4;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20%;
+    margin-bottom: 10px;
+    line-height: 2;
+    align-self: center;
+  }
+  .questionDescription{
+    display:flex;
+    align-items: center;
+    grid-row: 2/4;
+    grid-column: 1/9;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    width: 100%;
+    border: none;
+    font-size: 14px;
+    color: $black;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    font-family: 'Nanum Gothic Coding', monospace;
+    .imgbox{
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  .questionContent{
+    grid-row:4/6;
+    grid-column: 1/9;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    width: 100%;
+    border: none;
+    font-size: 14px;
+    color: $black;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    font-family: 'Nanum Gothic Coding', monospace;
+    div{
+      padding: 5px;
+    }
+  }
+  .Answer{
+    grid-row:6/7;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .answerArea{
+    grid-row:7/9;
+    grid-column:1/9;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  .answerArea:focus{
+    outline: none !important;
+  }
+  .answerInput{
+    height: 100%;
+  }
+  .buttonSubmit{
+    grid-row: 6/7;
+    grid-column: 7/9;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+}

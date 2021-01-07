@@ -1,0 +1,16 @@
+mixin questionBlock(question = {})
+    form.imageBlock#addAnswerForm
+        span.questionID(id=question.id)
+        button.questionNumber #{question.questionNumber}
+        button.questionScore #{question.questionScore}
+        .questionDescription
+            img.imgbox
+            .question #{question.question}
+        .questionContent
+            - for (var i=1;i<=5;i++)
+                div #{i}. #{question.questionContent.split(",")[i-1]}
+        button.Answer Answer
+        textarea.answerArea#answerArea
+        button.buttonSubmit#submitButton(type="submit") submit
+
+

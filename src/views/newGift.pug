@@ -1,0 +1,12 @@
+extends layouts/main
+
+
+block content
+    .form-container
+        form(method='post',action=`${routes.newGift}`) 
+
+            input(type="text",placeholder="제목", name="title")
+            textarea(placeholder="글을 작성하세요", name="description", required=true)
+
+
+            input(type='submit' value='전송')

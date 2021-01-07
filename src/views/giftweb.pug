@@ -1,0 +1,238 @@
+extends layouts/main
+include mixins/videoBlock
+include mixins/imageBlock
+include mixins/questionBlock
+
+
+
+block content
+    .questionWrapper
+        each item in questions
+            +questionBlock({
+                questionNumber : item.questionNumber,
+                questionScore: item.questionScore,
+                question: item.question,
+                questionContent: item.questionContent
+            })
+        form.imageBlock#addAnswerForm
+            button.questionNumber 1번
+            button.questionScore 3
+            .questionDescription 
+                img.imgbox(src="https://opgg-static.akamaized.net/images/lol/spell/GangplankW.png?image=q_auto,w_48&v=1603864069")
+                .question 위 스킬의 이름으로 알맞은 것은?
+            .questionContent
+                div 1. 귤까먹기
+                div 2. 괴혈병 치료
+                div 3. 해독
+                div 4. 맛 좋은 감
+                div 5. 홍창의
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 2번
+            button.questionScore 3
+            .questionDescription 
+                img.imgbox(src="https://media.vlpt.us/images/smp2103/post/e6c41915-eff9-4eb3-a863-a8671cc1df41/image.png")
+                .question 다음 챔피언의 이름은?
+            .questionContent
+                div 1. 녹턴
+                div 2. 워윅
+                div 3. 룰루
+                div 4. 라이즈
+                div 5. 홍창의
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 3번
+            button.questionScore 3
+            .questionDescription 
+                .question 미니언이 챔피언 또는 포탑을 공격하는 경우, 원래 공격력의 몇% 만큼의 피해를 입히는지 고르시오.
+            .questionContent
+                div 1. 80%
+                div 2. 70%
+                div 3. 60%
+                div 4. 50%
+                div 5. 홍창의
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 4번
+            button.questionScore 3
+            .questionDescription 
+                .question 미니언이 처음으로 생성되는 시간을 고르시오.
+            .questionContent
+                div 1. 1분 05초
+                div 2. 1분 10초
+                div 3. 1분 15초
+                div 4. 1분 00초
+                div 5. 1분 20초
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 5번
+            button.questionScore 3
+            .questionDescription 
+                .question "해방이다!" 대사를 사용하는 챔피언의 이름은?
+            .questionContent
+                div 1. 피오라
+                div 2. 신짜오
+                div 3. 사일러스
+                div 4. 다리우스
+                div 5. 홍창의
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 6번
+            button.questionScore 3
+            .questionDescription 
+                .question 다음중 실존하는 스킨이 아닌 것은?
+            .questionContent
+                div 1. 불의축제 오른
+                div 2. 마녀 엘리스
+                div 3. K/DA ALL OUT 세라핀
+                div 4. 무에타이 리신
+                div 5. 분장한다 문도!
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form#addAnswerForm
+            .image
+                img(src="https://media.vlpt.us/images/smp2103/post/34d0d1ec-8bea-47ab-94d8-9b8049076572/image.png" style="width:100%; border-radius: 5px;")
+        form.imageBlock#addAnswerForm
+            button.questionNumber 7번
+            button.questionScore 3
+            .questionDescription 
+                .question 왼쪽의 사진은 상대팀 미드 로밍, 탑 텔로 인한 4인 다이브 상황이다. 진은 다이브 당한 뒤 "우리팀 탑 뭐하냐?" 라고 채팅을 친 상황이다. 다음중 탑신병자의 대답으로 적절하지 않은 것을 고르시오.
+            .questionContent
+                div 1. "ㄴㅇㅁ"
+                div 2. "죄송합니다. 제가 아까 복귀텔을 써서.."
+                div 3. "어차피 후반가면 이김"
+                div 4. "***아 **"
+                div 5. "이게 내 잘못임?"
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 8번
+            button.questionScore 3
+            .questionDescription 
+                .imgbox
+                .question 위 스킬의 이름으로 알맞은 것은?
+            .questionContent
+                div 1. 귤까먹기
+                div 2. 괴혈병 치료
+                div 3. 해독
+                div 4. 맛 좋은 감
+                div 5. 홍창의
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 9번
+            button.questionScore 3
+            .questionDescription 
+                .imgbox
+                .question 위 스킬의 이름으로 알맞은 것은?
+            .questionContent
+                div 1. 귤까먹기
+                div 2. 괴혈병 치료
+                div 3. 해독
+                div 4. 맛 좋은 감
+                div 5. 홍창의
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 10번
+            button.questionScore 3
+            .questionDescription 
+                .imgbox
+                .question 위 스킬의 이름으로 알맞은 것은?
+            .questionContent
+                div 1. 귤까먹기
+                div 2. 괴혈병 치료
+                div 3. 해독
+                div 4. 맛 좋은 감
+                div 5. 홍창의
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+        form.imageBlock#addAnswerForm
+            button.questionNumber 11번
+            button.questionScore 3
+            .questionDescription 
+                .imgbox
+                .question 위 스킬의 이름으로 알맞은 것은?
+            .questionContent
+                div 1. 귤까먹기
+                div 2. 괴혈병 치료
+                div 3. 해독
+                div 4. 맛 좋은 감
+                div 5. 홍창의
+            button.Answer Answer
+            textarea.answerArea(placeholder="답을 작성하시오 ex) 1")
+
+            button.buttonSubmit(type="submit")#submitButton submit
+
+    
+
+block cont
+    .answerSheetBox
+        .answerSheetName OMR
+        .answerSheet
+            .answer#answer1
+                div 1
+            .answer#answer2
+            .answer#answer3
+            .answer#answer4
+            .answer#answer5
+            .answer#answer6
+            .answer#answer7
+            .answer#answer8
+            .answer#answer9
+            .answer#answer10
+            .answer#answer11
+            .answer#answer12
+            .answer#answer13
+            .answer#answer14
+            .answer#answer15
+            .answer#answer16
+            .answer#answer17
+            .answer#answer18
+            .answer#answer19
+            .answer#answer20
+            .answer#answer21
+            .answer#answer22
+            .answer#answer23
+            .answer#answer24
+            .answer#answer25
+            .answer#answer26
+            .answer#answer27
+            .answer#answer28
+            .answer#answer29
+            .answer#answer30
+
+        .answerSubmit
+            form(action="POST")
+                button submit
+
+        .result
+            .resultTable
+            a(href=`${routes.postDetail(post.id)}${routes.uploadImage}`) 문제출제하기
+                    
+            

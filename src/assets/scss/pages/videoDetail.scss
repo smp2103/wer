@@ -1,0 +1,111 @@
+.video-detail__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .video__info {
+    width: 100%;
+    max-width: 850px;
+    margin-top: 25px;
+    button {
+      width: 100px;
+      margin-bottom: 25px;
+    }
+    .video__author {
+      a {
+        color: #3498db;
+      }
+    }
+    .video__title,
+    .video__views,
+    .video__description {
+      display: block;
+      margin-bottom: 15px;
+    }
+    .video__title {
+      font-size: 22px;
+      font-weight: 300;
+    }
+  }
+}
+.post__comments {
+  .post__comment-number-wrapper{
+    text-align: center;
+  }
+  .add__comment {
+    margin-top: 25px;
+    width: 100%;
+    input {
+      width: 100%;
+      text-align:center;
+    }
+  }
+  .post__comments-list {
+    margin-top: 50px;
+    .CommentBox {
+      margin-bottom: 15px;
+      .creator-information{
+        display: grid;
+        grid-template-columns: repeat(8,1fr);
+        grid-template-rows: repeat(2, minmax(1fr));
+        .imgBox{
+          background-color:floralwhite;
+          width: 30px;
+          height: 30px;
+          border-radius: 70%;
+          overflow:hidden;
+          .avatar{
+            grid-column:1/2;
+            width:100%;
+            border-radius:1rem;
+          }
+        }
+        
+        .commentCreator{
+          grid-column: 2/9;
+          align-self:center;
+          margin-left:5%;
+          font-size: 85%;
+          font-weight: bolder;
+        }
+        .commentSpan{
+          grid-column:2/9;
+          grid-row:2/3;
+          margin-left: 5%;
+        }
+      }
+    }
+    li {
+      background-color: #712a880a;
+      color: black;
+      padding: 15px;
+      border-radius: 20px;
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      span{
+        word-wrap: break-word;
+      }
+      .commentSpan {
+        .deleteButton {
+          width: 5%;
+          height: 100%;
+          border: none;
+          color: red;
+          background-color: #3498db;
+          position: relative;
+          right: 1px;
+          box-shadow: none;
+          &:hover {
+            color: transparent;
+            text-shadow: 0 0 0 #ff7055;
+          }
+          &:active {
+            color: transparent;
+            text-shadow: 0 0 0 #7d1424;
+          }
+        }
+      }
+    }
+  }
+}
+
