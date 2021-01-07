@@ -34,6 +34,7 @@
     "heroku": "^7.47.7",
     "heroku-cli": "^7.0.9",
     "mini-css-extract-plugin": "^0.9.0",
+    "mongo": "^0.1.0",
     "mongoose": "^5.9.25",
     "mongoose-type-url": "^2.1.0",
     "mongoose-validator": "^2.1.0",

@@ -10,7 +10,6 @@ export const postJoin = async (req,res,next) => {
     const {
         body:{ name,sex,link,univ,age,mbti,description,email,password,password2}
     } = req;
-    console.log(req.body.url)
     if(password!==password2){
         res.status(400);
         res.render('join',{pageTitle : 'Home'});
@@ -27,9 +26,7 @@ export const postJoin = async (req,res,next) => {
                 univ,
                 age
             });
-            console.log(1)
             User.register(user,password);
-            console.log(2)
             next();
         } catch(error){
             console.log(error);
@@ -47,7 +44,6 @@ export const postJoin = async (req,res,next) => {
 
 export const getLogin = (req,res) => {
     res.render('login',{pageTitle : 'Join'});
-    console.log(req.body)
 }
 
 export const postLogin = passport.authenticate('local',{
@@ -98,8 +94,7 @@ export const logout = (req,res) => {
 
 export const getMe = async (req,res) => {
     try{
-        const user = await User.findById(req.user.id).populate("comments");
-        console.log(user.comments)
+        const user = await User.findById(req.user.id);
         res.render('userDetail',{pageTitle : 'User Details',user});
     }catch(error){
         res.render('userDetail',{pageTitle : 'User Details',user:[]});
@@ -122,17 +117,18 @@ export const getEditProfile = (req,res) => res.render('editProfile',{pageTitle :
 
 export const postEditProfile = async (req,res) => {
     const {
-        body: {name,email,description},
+        body: {name,mbti,description,style},
         file
     }= req;
     try{
         const user = await User.findByIdAndUpdate(req.user.id,{
             name,
-            email,
+            mbti,
             description,
+            style,
             avatarUrl: file ? file.location : req.user.avatarUrl
         });
-        res.redirect(routes.me);
+        res.redirect(routes.home);
     }catch(error){
         res.redirect(routes.editProfile)
     }

@@ -2,12 +2,7 @@ html,
 body {
   height: 100%;
 }
-body {
 
-  color: $black;
-  font-family: 'Nanum Gothic Coding', monospace;
-  font-size: 14px;
-}
 
 main {
   width: 100%;
@@ -54,3 +49,6 @@ input[type="submit"] {
   max-width:320px;
   margin: 0 auto;
 }
+
+::-webkit-scrollbar { display: none; }
+
