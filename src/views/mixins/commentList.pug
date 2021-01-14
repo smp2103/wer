@@ -1,0 +1,15 @@
+mixin commentList(comment={})
+    
+    
+    div(class="grid-container")
+        div(class=`col ${comment.creator.mbti} ${comment.creator.univ}`)
+            .information-container.scale
+                .u-profile
+                    img.u-avatar(src=comment.creator.avatarUrl)
+                    button(class="postDate" style="display:none;" value=`${comment.createdAt}`)
+                    .u-container
+                        .u-info #{comment.creator.univ} / #{comment.creator.mbti} / #{comment.creator.age}살 / #{comment.creator.sex}
+                        .u-name #{comment.creator.name}
+                .u-description #{comment.description}
+                    div <br>
+                    .date=timeForToday(comment.createdAt)

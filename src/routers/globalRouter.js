@@ -4,7 +4,7 @@ import { home, search, posting } from "../controller/videoController";
 import { logout, getJoin, postJoin, getLogin, postLogin, githubLogin, githubLoginCallback, postGitHubLogIn, getMe, message, getFJoin, postFJoin, kakao, likeUser, deleteUser } from "../controller/userController";
 import {onlyPublic, uploadImage,  onlyPrivate} from "../middlewares"
 import passport from "passport"
-import { getPosting, getDirection, getPost, postPost, getMuser, getFMuser, getCommunity  } from "../controller/postingController";
+import { getPosting, getDirection, getPost, postPost, getMuser, getFMuser, getCommunity, getLove, getLoveLove  } from "../controller/postingController";
 import { postImageUpload } from "../controller/imageController";
 import { pagingController } from "../controller/pageController";
 
@@ -44,6 +44,8 @@ globalRouter.get(routes.likeUser, likeUser);
 globalRouter.get(routes.deleteUser,deleteUser)
 
 globalRouter.get(routes.test,pagingController)
+globalRouter.get(routes.love,getLove)
+globalRouter.get(routes.lovelove,getLoveLove)
 
 
 

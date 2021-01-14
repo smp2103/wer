@@ -8,6 +8,11 @@ const filterButton = document.getElementById('filterButton')
 const postings = document.getElementById('postings')
 const join = document.getElementById('join')
 const postDate = document.getElementsByClassName('postDate')
+const comment = document.getElementById('commentForm-wrapper')
+
+if(comment){
+  comment.nextSibling.style.height = "56%"
+}
 
 // if(postDate) {
 //   console.log(1)
@@ -286,42 +291,122 @@ const minusLike = (node) => {
 
 
 // };
-
-// const sendComment = async comment => {
-//   const postId = window.location.href.split("/posting/")[1];
-//   console.log(comment)
-//   const response = await axios({
-//     url: `/api/${postId}/comment`,
-//     method: "POST",
-//     data: {
-//       comment
-//     }
-//   }); 
-//   if (response.status === 200) {
-//     console.log(response)
-//     let answer = response.data[0];
-//     let user = response.data[1];
-//     addComment(answer,user);
-//   }
-// };
-
-// const handleSubmit = (event) => {
-//   console.log("button click")
-//   event.preventDefault();
-//   const answerInput = addAnswerForm.querySelector("textarea")
-//   let comment = answerInput.value;
-//   console.log(comment)
-//   sendComment(comment);
-// };
-
-// const handleClick = (event) => {
-
-//   event.preventDefault();
-//   console.log('handleclicks')
-//   sendLike();
+const addComment = function (comment,user) {
+  // 생성.
 
 
-// }
+  const commentList = document.getElementById('commentList')
+
+  let users = document.createElement('div')
+  users.classList.add('users')
+  users.id = "commentList"
+  users.style = "background-color:#f2f2f2;"
+  
+  let grid_container = document.createElement('div')
+  grid_container.classList.add('grid-container')
+
+  users.appendChild(grid_container)
+  
+  let col = document.createElement('div')
+  col.classList.add('col')
+  col.classList.add(`${user.mbti}`)
+  col.classList.add(`${user.univ}`)
+
+  grid_container.appendChild(col)
+
+  let information_container = document.createElement('div')
+  information_container.classList.add('information-container')
+  information_container.classList.add('scale')
+
+  col.appendChild(information_container)
+
+  let profile = document.createElement('div')
+  profile.classList.add('u-profile')
+  
+  information_container.appendChild(profile)
+  
+  let avatar = document.createElement('img')
+  avatar.classList.add('u-avatar')
+  avatar.src = user.avatarUrl
+
+  profile.appendChild(avatar)
+
+  let button = document.createElement('button')
+  button.classList.add('postDate')
+  button.style="display:none"
+  button.value = comment.createdAt
+
+  profile.appendChild(button)
+
+  let container = document.createElement('div')
+  container.classList.add('u-container')
+  
+  profile.appendChild(container)
+
+  let info = document.createElement('div')
+  info.classList.add('u-info')
+  info.innerHTML = `${user.univ} / ${user.mbti} / ${user.age}살 / ${user.sex}`
+
+  container.appendChild(info)
+
+  let name = document.createElement('div')
+  name.classList.add('u-name')
+  name.innerHTML = user.name
+  
+  container.appendChild(name)
+
+  let description = document.createElement('div')
+  description.classList.add('u-description')
+  description.innerHTML = comment
+
+  information_container.appendChild(description)
+  
+  let date = document.createElement('div')
+  date.classList.add('date')
+  date.style="margin-top: 8px;"
+  date.innerHTML= "방금전"
+
+  description.appendChild(date) 
+  
+  commentList.appendChild(users)
+
+
+  
+
+}
+
+const sendComment = async comment => {
+  const postId = window.location.href.split("/posting/")[1];
+  const response = await axios({
+    url: `/posting/${postId}`, 
+    method: "POST",
+    data: {
+      comment
+    }
+  }); 
+  if (response.status === 200) {
+    console.log(response)
+    let answer = response.data[0];
+    let user = response.data[1];
+    addComment(answer,user);
+  }
+};
+
+
+const handleClick = (event) => {
+
+  event.preventDefault();
+  console.log('handleclicks')
+  const comment = document.getElementById('postComment').value
+  sendComment(comment);
+}
+
+const commentSubmit = document.getElementById('commentSubmit')
+
+if(commentSubmit){
+  commentSubmit.addEventListener('click',handleClick)
+}
+  
 
 
 // function init() {

@@ -43,7 +43,12 @@ const PostSchema = new mongoose.Schema({
             ref: "Image"
         }
     ],
-    comments: [],
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment"
+        }
+    ],
     questions: [
         {
             type: mongoose.Schema.Types.ObjectId,

@@ -1,0 +1,22 @@
+extends layouts/main
+include mixins/userList
+
+block content
+    button(style="background-color:aquamarine").hearts 나를 좋아해요
+    a(href=routes.lovelove)
+        button.hearts 내가 좋아해요
+    .lovers
+        each item in lover
+                +userList({
+                    id: item._id,
+                    name: item.name,
+                    description: item.description,
+                    sex: item.sex,
+                    link: item.link,
+                    avatarUrl: item.avatarUrl,
+                    age: item.age,
+                    univ: item.univ,
+                    mbti: item.mbti,
+                    like: item.like,
+                    style: item.style
+                })

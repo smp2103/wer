@@ -22,8 +22,11 @@ block content
                         .likeNum #{user.like}
     .album
         .album-wrapper
-            .albumText
-                div 앨범
+            button.albumText.hearts 앨범
+            if loggedUser && loggedUser.id === user.id    
+                .albumUpload(style="text-align-last:right;")
+                    a(href=`${routes.userDetail(user.id)}${routes.album}`)
+                        button.hearts 업로드
         each item in images
                 +imageBlock({
                     fileUrl: item.fileUrl
@@ -39,14 +42,12 @@ block content
 
 
 block cont
+    //- 정보수정
     if loggedUser && loggedUser.id === user.id
         a(href=`/users${routes.editProfile}` ).Ellipse-19
             img(src="/static/pencil.svg")
-        a(href=user.link , style="display:none;").Ellipse-19
-            img(src="/static/pencil.svg")
+    //- 채팅보내기
     if loggedUser && loggedUser.id !== user.id
-        a(href=`/users${routes.editProfile}` style="display:none;").Ellipse-19
-            img(src="/static/pencil.svg" )
-        a(href=user.link).Ellipse-19
-            img(src="/static/pencil.svg")
+        a(href=user.link).Ellipse-20
+            div(style="margin:0 auto; color:white;") 말걸기
 

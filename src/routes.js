@@ -73,12 +73,16 @@ const DELETE_USER = "/deleteUser"
 const MHOME = "/mhome"
 
 const TEST2 = "/test"
+const LOVE = "/love"
+const LOVELOVE = "/love/love"
 
 const ALBUMUPLOAD = "/album"
 const routes = {
     home: HOME,
     join : JOIN,
     login : LOGIN,
+    love : LOVE,
+    lovelove : LOVELOVE,
     logout : LOGOUT,
     search : SEARCH,
     users : USERS,

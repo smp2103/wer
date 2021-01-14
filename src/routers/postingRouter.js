@@ -1,7 +1,7 @@
 //수많은 라우트들이 담긴 파일
 import express from "express";
 import routes from "../routes";
-import { getPosting, postDetail, deletePosting, getPostingAuthorization, postPostingAuthorization, deleteGift, getPostingComments } from "../controller/postingController";
+import { getPosting, postDetail, deletePosting, getPostingAuthorization, postPostingAuthorization, deleteGift, getPostingComments, postAddComment } from "../controller/postingController";
 import { posting, home, getNewUpload, postNewUpload, postUpload, videoDetail, getEditVideo, postEditVideo, deleteVideo } from "../controller/videoController";
 import { uploadVideo, uploadImage, onlyPrivate } from "../middlewares";
 import { getimageUpload, getImageUpload, postImageUpload, imageDetail, postEditImage, getEditImage, deleteImage } from "../controller/imageController";
@@ -9,12 +9,13 @@ import { getimageUpload, getImageUpload, postImageUpload, imageDetail, postEditI
 const postingRouter  = express.Router();
 
 
-postingRouter.get(routes.posting,home); // 선물함 
+postingRouter.get(routes.posting,home); 
 
 postingRouter.get(routes.postingAuthorize,getPostingAuthorization);
 postingRouter.post(routes.postingAuthorize,postPostingAuthorization);
 
-postingRouter.get(routes.postDetail(),onlyPrivate,postDetail) // 진행중인 선물 >>
+postingRouter.get(routes.postDetail(),onlyPrivate,postDetail) 
+postingRouter.post(routes.postDetail(),postAddComment);
 postingRouter.get(routes.deletePosting(), onlyPrivate, deletePosting);
 
 

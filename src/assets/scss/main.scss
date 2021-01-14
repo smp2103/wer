@@ -98,6 +98,23 @@ a{
   }
 }
 
+.Ellipse-20 {
+  display:flex;
+  align-items: center;
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  background-color : #00dcc8eb;
+
+  position: fixed;
+  bottom:13%;
+  right:19px;
+  z-index:999;
+  img{
+    margin:0 auto;
+  }
+}
+
 
 #refresh{
   width:px;

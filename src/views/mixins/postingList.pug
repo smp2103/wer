@@ -5,13 +5,13 @@ mixin postingList(post={})
     div(class="grid-container")
         div(class=`col ${post.user.mbti} ${post.user.univ}`)
             .information-container.scale
-                a(href=`${post.user.link}`).u-profile
+                a(href=`${routes.postDetail(post.id)}`).u-profile
                     img.u-avatar(src=post.user.avatarUrl)
                     button(class="postDate" style="display:none;" value=`${post.createdAt}`)
                     .u-container
                         .u-info #{post.user.univ} / #{post.user.mbti} / #{post.user.age}살 / #{post.user.sex}
                         .u-name #{post.user.name}
-                a(href=`${post.user.link}`).u-description #{post.description}
+                a(href=`${routes.postDetail(post.id)}`).u-description #{post.description}
                     div <br>
                     .date=timeForToday(post.createdAt)
             

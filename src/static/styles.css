@@ -286,6 +286,32 @@ a :visited {
   margin: 0 auto;
 }
 
+.Ellipse-20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80px;
+  height: 40px;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+  background-color: #00dcc8eb;
+  position: fixed;
+  bottom: 13%;
+  right: 19px;
+  z-index: 999;
+}
+.Ellipse-20 img {
+  margin: 0 auto;
+}
+
 #refresh {
   width: px;
   height: 20px;
@@ -1272,9 +1298,14 @@ html {
   font-weight: 500;
 }
 .grid-container .information-container .u-profile .u-container .u-name {
-  padding-top: 5%;
+  padding-top: 8px;
   font-size: 14px;
   font-weight: 700;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 50%;
+  overflow: hidden;
 }
 .grid-container .information-container .u-description {
   grid-column: 1/5;
@@ -1284,6 +1315,12 @@ html {
   padding-bottom: 5%;
   padding-top: 3px;
   line-height: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  display: block;
+  width: 90%;
 }
 .grid-container .information-container .u-likeButton {
   grid-column: 4/5;
@@ -1360,6 +1397,78 @@ body {
   height: 100vh;
   font-family: "Noto Sans KR", sans-serif;
   font-size: 0.8rem;
+}
+
+.post-description {
+  grid-column: 1/5;
+  grid-row: 3/5;
+  align-self: center;
+  font-size: 11px;
+  padding-bottom: 5%;
+  padding-top: 3px;
+  line-height: 15px;
+}
+
+.hearts {
+  margin-bottom: 5px;
+  font-size: 9px;
+  margin-right: 3px;
+  background-color: white;
+  -moz-text-align-last: center;
+       text-align-last: center;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  border: solid 0.5px #b2b2b28c;
+  -webkit-appearance: none;
+  font-family: "Noto Sans KR", sans-serif;
+  text-align: center;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+}
+
+#commentForm-wrapper {
+  position: fixed;
+  bottom: 10%;
+  width: auto;
+  z-index: 9999;
+}
+#commentForm-wrapper form {
+  margin-bottom: 0;
+}
+#commentForm-wrapper form input {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+#commentForm-wrapper #commentForm {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 80% 20%;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+  padding: 1%;
+}
+#commentForm-wrapper #commentForm #postComment {
+  margin-bottom: 0px;
+  width: 90%;
+  margin: 0 auto;
+}
+#commentForm-wrapper #commentForm #commentSubmit {
+  padding: 2%;
+  height: 30px;
+  width: 30px;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+  justify-self: center;
+  border: 1px solid #00dcc8;
 }
 
 .custom-file-container {

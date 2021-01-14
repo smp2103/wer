@@ -40,9 +40,13 @@
                     font-weight:500;
                 }
                 .u-name{
-                    padding-top: 5%;
+                    padding-top: 8px;
                     font-size: 14px;
                     font-weight:700;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                    width:50%;
+                    overflow:hidden;
                 }
             }
         }
@@ -54,6 +58,11 @@
             padding-bottom: 5%;
             padding-top: 3px;
             line-height: 15px;
+            overflow:hidden;
+            white-space: nowrap;
+            text-overflow:ellipsis;
+            display:block;
+            width:90%;
         }
         .u-likeButton{
             grid-column: 4/5;
@@ -132,4 +141,81 @@ body{
     height: 100vh;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.8rem;
+}
+
+.post-description{
+    grid-column: 1/5;
+    grid-row: 3/5;
+    align-self: center;
+    font-size: 11px;
+    padding-bottom: 5%;
+    padding-top: 3px;
+    line-height: 15px;
+    
+}
+
+.hearts{
+    margin-bottom: 5px;
+    font-size: 9px;
+    margin-right:3px;
+    background-color: white;
+    text-align-last: center;
+  
+    border-radius: 5px;
+  
+    border: solid 0.5px #b2b2b28c;
+
+    -webkit-appearance: none;
+    font-family: 'Noto Sans KR', sans-serif;
+
+
+    text-align: center;
+  
+    font-weight: normal;
+  
+    font-stretch: normal;
+  
+    font-style: normal;
+  
+    line-height: normal;
+  
+    letter-spacing: normal;
+  
+    text-align: center;
+  
+    color: #000000;
+    
+}
+#commentForm-wrapper{
+    position:fixed;
+    bottom:10%;
+    width: auto;
+    z-index: 9999;
+    form{
+        margin-bottom:0;
+        input{
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.1)
+        }
+    }
+    #commentForm{
+        display:grid;
+        width: 100vw;
+        grid-template-columns: 80% 20%;
+        border-radius: 10px;
+        padding:1%;
+    
+        #postComment{
+            margin-bottom:0px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        #commentSubmit{
+            padding:2%;
+            height:30px;
+            width:30px;
+            align-self: center;
+            justify-self: center;
+            border: 1px solid #00dcc8;
+        }
+    }
 }

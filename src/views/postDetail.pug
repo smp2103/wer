@@ -1,7 +1,40 @@
 extends layouts/main
 
+include mixins/commentList
+
 
 block content
-    div This is postDetail
-    div#like #{post.like}
-    button#likeButton 추천하기
+    div(class="grid-container")
+        div(class=`col ${post.creator.mbti} ${post.creator.univ}`)
+            .information-container.scale
+                .u-profile
+                    img.u-avatar(src=post.creator.avatarUrl)
+                    button(class="postDate" style="display:none;" value=`${post.createdAt}`)
+                    .u-container
+                        .u-info #{post.creator.univ} / #{post.creator.mbti} / #{post.creator.age}살 / #{post.creator.sex}
+                        .u-name #{post.creator.name}
+                .post-description #{post.description}
+                    div <br>
+                    .date=timeForToday(post.createdAt)
+            
+                .u-likeButton
+                    .like-wrapper
+                        button(class="postlike", value = post.id )
+                            img(src="/static/heart.svg" class="heart")
+                        .likeNum #{post.like}
+    div(style="margin-bottom:7px;") 댓글
+    .users#commentList(style="background-color:#f2f2f2")
+            each item in comments
+                    +commentList({
+                        createdAt : item.createdAt,
+                        creator : item.creator,
+                        description : item.description
+                    })
+    
+block cont
+     .form-container#commentForm-wrapper
+        form(action=`${routes.postDetail(post.id)}`, method="post",enctype="multipart/form-data" )
+            
+            #commentForm
+                input(type="text",id="postComment",name="postComment").rectangle
+                button(value="작성" style="font-size:6px;" id="commentSubmit") 작성

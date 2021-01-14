@@ -22,6 +22,7 @@ const UserSchema = new mongoose.Schema({
     like_created : [
         {
             type: mongoose.Schema.Types.ObjectId,
+            ref : "User"
         }
     ],
     like_user : [

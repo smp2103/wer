@@ -32,8 +32,13 @@ export const getCommunity = async (req,res) =>{
             }
         
             const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-            if (betweenTimeDay < 365) {
+            if (betweenTimeDay < 2) {
                 return `${betweenTimeDay}일전`;
+            } else if(betweenTimeDay > 2){
+                if(timeValue.getMinutes()<10){
+                    return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:0${timeValue.getMinutes()}`
+                }
+                return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:${timeValue.getMinutes()}`
             }
         
             return `${Math.floor(betweenTimeDay / 365)}년전`;
@@ -43,6 +48,27 @@ export const getCommunity = async (req,res) =>{
         console.log(error);
         res.render('community',{pageTitle : '커뮤니티',posts:[]});
     }
+}
+
+export const getLove = async(req,res) => {
+    const {user} = req;
+
+    const love = await User.find(user).populate('like_created')
+    const lover = love[0].like_created
+
+    
+    res.render('love',{pageTitle : '연고링',lover});
+}
+
+export const getLoveLove = async(req,res) => {
+    const {user} = req;
+
+    const love = await User.find(user).populate('like_user')
+    const lover = love[0].like_user
+    
+
+    
+    res.render('lovelove',{pageTitle : '연고링',lover});
 }
 
 
@@ -65,7 +91,7 @@ export const getMuser = async (req,res) => {
 
         shuffle(users)
 
-        res.render('posting',{pageTitle : '연고링',posts,users,me,date});
+        res.render('posting',{pageTitle : '연고링',posts,users,me});
     } catch(error){
         console.log(error);
         res.render('posting',{pageTitle : '연고링',posts:[],users:[],me:[]});
@@ -100,10 +126,6 @@ export const getDirection = (req,res) => {
 }
 
 
-
-// 새로운 포스트 생성
-
-// GIFTWEB신청 페이지
 export const getPost = async (req,res) => {
 
     res.render("newGift") 
@@ -170,9 +192,10 @@ export const postAddComment = async (req, res) => {
 
         const post = await Post.findById(id)
         const newComment = await Comment.create({
-            text: comment,
+            description: comment,
             creator : user.id,
-            post: post.id
+            post: post._id,
+            creatorName : user.name
         })
         post.comments.push(newComment)
         post.save();
@@ -194,10 +217,41 @@ export const postAddComment = async (req, res) => {
 export const postDetail = async (req,res) => {
     const {params:{id}} = req;
     try{
-        const post = await Post.findById(id);
-        res.render('postDetail',{pageTitle : `${post.title}`, post}); 
+        const post = await Post.findById(id).populate('creator').populate({
+            path: 'comments',
+            populate: 'creator'
+        });
+        const comments = post.comments
+        const timeForToday =  function (value) {
+            const today = new Date();
+            const timeValue = new Date(value);
+        
+            const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+            if (betweenTime < 1) return '방금전';
+            if (betweenTime < 60) {
+                return `${betweenTime}분전`;
+            }
+        
+            const betweenTimeHour = Math.floor(betweenTime / 60);
+            if (betweenTimeHour < 24) {
+                return `${betweenTimeHour}시간전`;
+            }
+        
+            const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+            if (betweenTimeDay < 2) {
+                return `${betweenTimeDay}일전`;
+            } else if(betweenTimeDay > 2){
+                if(timeValue.getMinutes()<10){
+                    return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:0${timeValue.getMinutes()}`
+                }
+                return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:${timeValue.getMinutes()}`
+            }
+        
+            return `${Math.floor(betweenTimeDay / 365)}년전`;
+        }
+        res.render('postDetail',{pageTitle : `연고링`, post,timeForToday,comments}); 
     } catch (error) {
-        res.render('postDetail',{pageTitle : `${post.title}`, post:[]});
+        res.render('postDetail',{pageTitle : `연고링`, post:[]});
     }
 };
 
@@ -246,13 +300,11 @@ export const like = async (req,res) => {
             users.like_created.splice(users.like_created.indexOf(user._id),1)
             user.like_user.splice(user.like_user.indexOf(users._id),1)
             users.like -=1;
-            user.like_user.pop();
             res.sendStatus(201)
         }else {
             users.like_created.push(user._id);
             user.like_user.push(users._id);
             users.like +=1
-            user.like_user.push(users)
             res.sendStatus(200)
         }
 
