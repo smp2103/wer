@@ -5,9 +5,11 @@ extends layouts/main
 block content
     .form-container
         form(action=`${routes.users}${routes.editProfile}`, method="post",enctype="multipart/form-data")
+            
+            #preview
             .fileUpload
                 label(for="avatar").default 프로필사진
-                input(type="file",id="avatar",name="avatar", accept="image/*").rectangle
+                input(type="file",id="getFile",name="avatar", accept="image/*").rectangle
             .default.nickname 닉네임
             input(type="text",placeholder="Name",name="name",value =loggedUser.name).rectangle
             .default.university 한줄소개
@@ -15,7 +17,11 @@ block content
             .default.mbtiType MBTI
             input(type="text",placeholder="mbti",name="mbti",value=loggedUser.mbti).rectangle
             .default.styleType 스타일(ex. 귀여움/수다쟁이...)
-            input(type="text",placeholder="style").rectangle
+            input(type="text",name="style" ,placeholder="style" value=loggedUser.style).rectangle
+            .default.age 나이
+            input(type="text",name="age",placeholder="나이",value=loggedUser.age).rectangle
+            .default.link 오카 링크
+            input(type="text",name="link",placeholder="오픈카카오톡링크",value=loggedUser.link).rectangle
 
             input(type="submit",value="Update Profile")
             .warning 19금적인 용어는 삼가주세요.

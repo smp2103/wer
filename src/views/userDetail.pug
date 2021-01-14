@@ -1,14 +1,52 @@
 extends layouts/main
 include mixins/videoBlock
+include mixins/userList
+include mixins/imageBlock
 
 block content
-    .user-profile
-        .user-profile__header
-            img.u-avatar(src=user.avatarUrl)
-            h4.profile__username=user.name
-        if loggedUser && loggedUser.id === user.id
-            .user-profile__btns
-                a(href=`/users${routes.editProfile}`)
-                    button ✏️ 정보 수정
 
+    div(class=`${user.mbti} ${user.univ} grid-container`)
+        .col
+            .information-container.scale
+                a(href=`${user.link}`).u-profile
+                    img.u-avatar(src=user.avatarUrl)
+                    .u-container
+
+                        .u-info #{user.univ} / #{user.mbti} / #{user.age}살 / #{user.sex}
+                        .u-name #{user.name}
+                a(href=`${user.link}`).u-description #{user.style}<br>#{user.description}
+                .u-likeButton
+                    .like-wrapper
+                        button(class="like", value = user.id )
+                            img(src="/static/heart.svg" class="heart")
+                        .likeNum #{user.like}
+    .album
+        .album-wrapper
+            .albumText
+                div 앨범
+        each item in images
+                +imageBlock({
+                    fileUrl: item.fileUrl
+                })
+
+                
+    //- if loggedUser && loggedUser.id === user.id
+    //-     .user-profile__btns
+    //-         a(href=`/users${routes.editProfile}`)
+    //-             button ✏️ 정보 수정 
+
+
+
+
+block cont
+    if loggedUser && loggedUser.id === user.id
+        a(href=`/users${routes.editProfile}` ).Ellipse-19
+            img(src="/static/pencil.svg")
+        a(href=user.link , style="display:none;").Ellipse-19
+            img(src="/static/pencil.svg")
+    if loggedUser && loggedUser.id !== user.id
+        a(href=`/users${routes.editProfile}` style="display:none;").Ellipse-19
+            img(src="/static/pencil.svg" )
+        a(href=user.link).Ellipse-19
+            img(src="/static/pencil.svg")
 

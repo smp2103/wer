@@ -2,15 +2,12 @@ extends layouts/main
 
 block content
     .form-container
-        form(method='post' enctype='multipart/form-data' action=`${routes.postDetail(post.id)}/upload-image`) 
-            .img-wrapper
-                img#preview(src='https://rppproto.s3.amazonaws.com/image/b2c6359a3df7769020a2df74fe18a94d' width='800' alt='선물을 넣어주세요!!')
-                div 문제 첨부 사진
-            input(type='file' id="getFile" accept="image/*" name='img')
-            input(type="text", placeholder="문제번호", name="questionNumber", required=true)
-            input(type="number", placeholder="문제점수", name="questionScore", required=true)
-            input(type="text", placeholder="문제", name="question", required=true)
-            input(type="text", placeholder="보기(쉼표로 구분)", name="questionContent", required=true)
+        form(action=`${routes.userDetail(users.id)}${routes.album}`, method="post",enctype="multipart/form-data")
+            
+            #preview
+            .fileUpload
+                label(for="img").default 앨범사진
+                input(type="file",id="getFile",name="img", accept="image/*").rectangle
 
             input(type='submit' value='전송')
 

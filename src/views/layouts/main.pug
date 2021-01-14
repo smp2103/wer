@@ -7,6 +7,15 @@ html
         meta(name='viewport' content='width=device-width, initial-scale=1.0,user-scalable=no, maximum-scale=1, minimum-scale=1')
         link(href='https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap' rel='stylesheet')
         <link href="https://fonts.googleapis.com/css?family=Stylish:400" rel="stylesheet">
+        script(async='' src='https://www.googletagmanager.com/gtag/js?id=G-GJPVHFS3E1')
+        script.
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GJPVHFS3E1');
+        script(src='https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js')
+        script(data-ad-client='ca-pub-2656946349231675' async='' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+
 
 
     body
@@ -16,7 +25,7 @@ html
             .form-wrapper
                 form(action=`${routes.search}`,method= "get")
                     input(type="text", placeholder="Search by term..",name="term")
-        
+        block cont
         section
             .section1
                 .content(id='content')

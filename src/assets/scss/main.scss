@@ -52,3 +52,71 @@ input[type="submit"] {
 
 ::-webkit-scrollbar { display: none; }
 
+a{
+  color:black;
+  text-decoration: none;
+  :hover{
+    text-decoration: none;
+    color:black;
+  }
+  :visited{
+    text-decoration: none;
+    color:black;
+  }
+
+}
+
+.fileUpload{
+  margin-bottom: 10px;
+}
+
+.filtered{
+  display: none;
+}
+
+.logoName{
+  font-weight: 900;
+}
+
+
+.Ellipse-19 {
+  width: 40px;
+  height: 40px;
+
+  background-color: rgba(106, 53, 238, 0.87);
+  border-radius: 70%;
+  display:flex;
+  text-align: center;
+  align-items: center;
+
+  position: fixed;
+  bottom:13%;
+  right:19px;
+  z-index:999;
+  img{
+    margin:0 auto;
+  }
+}
+
+
+#refresh{
+  width:px;
+  height:20px;
+}
+
+#preview{
+  max-width: 100%;
+  margin: 0 auto;
+  display:block;
+}
+
+.albumImage{
+  width:300px;
+  height:300px;
+  display:block;
+  margin: 0 auto;
+}
+
+.date{
+  font-size: 10px;
+}

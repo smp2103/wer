@@ -1,0 +1,63 @@
+extends layouts/main
+
+block content
+    .form-container
+        form(action=routes.fjoin, method="post")
+            input(type="text",name="name",placeholder="별명",required = true)
+
+            //- input(type="text",name="sex",placeholder="성별",required = true)
+            //- input(type="text",name="mbti",placeholder="mbti",required = true)
+            //- input(type="text",name="univ",placeholder="학교",required=true)
+            p 성별
+            div(style="display:flex")
+                label
+                input(type='radio' name='sex' value='남자' style="width:10px; margin-bottom: 10px")
+                |  남자
+                label
+                input(type='radio' name='sex' value='여자' style="width:10px; margin-bottom: 10px")
+                |  여자
+            p MBTI
+            select(name='mbti', id = "mbtiFilter" style="margin-bottom: 10px")
+                                    option(value="" selected) MBTI
+                                    option(value='ISTJ') ISTJ
+                                    option(value="ISFJ") ISFJ
+                                    option(value="INFJ") INFJ
+                                    option(value="INTJ") INTJ
+                                    option(value="ISTP") ISTP
+                                    option(value="ISFP") ISFP
+                                    option(value="INFP") INFP
+                                    option(value="INTP") INTP
+                                    option(value="ESTP") ESTP
+                                    option(value="ESFP") ESFP
+                                    option(value="ENFP") ENFP
+                                    option(value="ENTP") ENTP
+                                    option(value="ESTJ") ESTJ
+                                    option(value="ESFJ") ESFJ
+                                    option(value="ENFJ") ENFJ
+                                    option(value="ENTJ") ENTJ
+            p 학교
+            div(style="display:flex; margin-bottom: 10px")
+                label
+                input(type='radio' name='univ' value='연세대학교' style="width:10px;")
+                |  연세대
+                label
+                input(type='radio' name='univ' value='고려대학교' style="width:10px;")
+                |  고려대
+
+
+
+
+
+            input(type="text",name="description",placeholder="한줄소개",required=true)
+
+            
+            input(type="text",name="style",placeholder="스타일",required=true)
+            input(type="text",name="age",placeholder="나이",required=true)
+            input(type="text",name="link",placeholder="오픈카카오톡링크",required=true)
+            input(type="text",name="email",placeholder="Email",required = true, value =`user${user.length+1000}`)
+            input(type="password",name="password",placeholder="Password",required = true, value = `${user.length+1536}`)
+            input(type="password",name="password2",placeholder="Verify Password",required = true,value = `${user.length+1536}`)
+            input(type="submit",value="Join")
+
+
+

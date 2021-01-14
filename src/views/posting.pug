@@ -1,17 +1,47 @@
 extends layouts/main
 include mixins/postingList
 include mixins/userList
-
+//- block cont
+//-     .filters
+//-             div.univ-filter
+//-                 form(action=routes.filter,method="post",id="filter")
+//-                     select(name='univ', id = "univFilter")
+//-                         option(value='' selected) 학교
+//-                         option(value='연세대학교') 연세대
+//-                         option(value='고려대학교') 고려대
+//-                     select(name='mbti', id = "mbtiFilter")
+//-                         option(value="" selected) MBTI
+//-                         option(value='ISTJ') ISTJ
+//-                         option(value="ISFJ") ISFJ
+//-                         option(value="INFJ") INFJ
+//-                         option(value="INTJ") INTJ
+//-                         option(value="ISTP") ISTP
+//-                         option(value="ISFP") ISFP
+//-                         option(value="INFP") INFP
+//-                         option(value="INTP") INTP
+//-                         option(value="ESTP") ESTP
+//-                         option(value="ESFP") ESFP
+//-                         option(value="ENFP") ENFP
+//-                         option(value="ENTP") ENTP
+//-                         option(value="ESTJ") ESTJ
+//-                         option(value="ESFJ") ESFJ
+//-                         option(value="ENFJ") ENFJ
+//-                         option(value="ENTJ") ENTJ
+//-                     input(type="button" value='친구찾기',id="filterButton")
+//-                     span(id="refresh")
+//-                         i(style="width:15px; margin-left:10px; color: #4444447a;").fas.fa-sync-alt
 block content
 
+
+    
     if loggedUser
         .filters
             div.univ-filter
                 form(action=routes.filter,method="post",id="filter")
                     select(name='univ', id = "univFilter")
                         option(value='' selected) 학교
-                        option(value='y') 연세대
-                        option(value='k') 고려대
+                        option(value='연세대학교') 연세대
+                        option(value='고려대학교') 고려대
                     select(name='mbti', id = "mbtiFilter")
                         option(value="" selected) MBTI
                         option(value='ISTJ') ISTJ
@@ -30,7 +60,9 @@ block content
                         option(value="ESFJ") ESFJ
                         option(value="ENFJ") ENFJ
                         option(value="ENTJ") ENTJ
-                    input(type="submit" value='필터링',class="filterSubmit")
+                    input(type="button" value='친구찾기',id="filterButton")
+                    span(id="refresh")
+                        i(style="width:15px; margin-left:10px; color: #4444447a;").fas.fa-sync-alt
         .myProfile
             each item in me
                 +userList({
@@ -43,7 +75,8 @@ block content
                     age: item.age,
                     univ: item.univ,
                     mbti: item.mbti,
-                    like: item.like
+                    like: item.like,
+                    style: item.style
                 })
         //- .menu
         //-     .posting-number 
@@ -64,23 +97,28 @@ block content
                         age: item.age,
                         univ: item.univ,
                         mbti: item.mbti,
-                        like: item.like
+                        like: item.like,
+                        style: item.style
                     })
-    
-    else
 
-        .users
-            each item in users
-                    +userList({
-                        id: item._id,
-                        name: item.name,
-                        description: item.description,
-                        sex: item.sex,
-                        link: item.link,
-                        avatarUrl: item.avatarUrl,
-                        age: item.age,
-                        univ: item.univ,
-                        mbti: item.mbti,
-                        like: item.like
-                    })
+    else
+        
+    
+    //- else
+
+    //-     .users
+    //-         each item in users
+    //-                 +userList({
+    //-                     id: item._id,
+    //-                     name: item.name,
+    //-                     description: item.description,
+    //-                     sex: item.sex,
+    //-                     link: item.link,
+    //-                     avatarUrl: item.avatarUrl,
+    //-                     age: item.age,
+    //-                     univ: item.univ,
+    //-                     mbti: item.mbti,
+    //-                     like: item.like,
+    //-                     style: item.style
+    //-                 })
 

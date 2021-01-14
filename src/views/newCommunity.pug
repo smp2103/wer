@@ -1,0 +1,38 @@
+extends layouts/main
+include mixins/postingList
+block content
+
+    if loggedUser
+        if startPage > maxPost
+            a.prev_btn.pageBtn(href=`${routes.test}?page=${startPage-1}`)
+                i.fas.fa-angle-double-left
+        else
+            a.prev_btn.pageBtn.disabled(href="javascript:void(0);")
+                i.fas.fa-angle-double-left
+        -for (let i = startPage; i <= endPage ; i++)
+            if i === currentPage
+                a.pageBtn.current(href=`${routes.test}?page=${i}`)
+                    span=i
+            else
+                a.pageBtn(href=`${routes.test}?page=${i}`)
+                    span=i       
+        if endPage < totalPage
+            a.next_btn.pageBtn(href=`${routes.test}?page=${endPage+1}`)
+                i.fas.fa-angle-double-right
+        else
+            a.next_btn.pageBtn.disabled(href="javascript:void(0);")
+                i.fas.fa-angle-double-right
+        .postings#postings
+                    each item in posts
+                            +postingList({
+                                id : item._id,
+                                title: item.title,
+                                description: item.description,
+                                creator : item.creator,
+                                creatorName : item.creatorName,
+                                like : item.like,
+                                user : item.creator,
+                                createdAt : item.createdAt
+                            }) 
+
+    

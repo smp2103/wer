@@ -29,6 +29,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "file-upload-with-preview": "^4.1.0",
     "get-blob-duration": "^1.1.2",
     "helmet": "^3.23.3",
     "heroku": "^7.47.7",
@@ -58,19 +59,13 @@
     "shx": "^0.3.3",
     "style-loader": "^1.2.1",
     "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1"
+    "webpack-cli": "^4.3.1",
+    "xlsx": "^0.16.9"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static' ",
     "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack -w",
-    "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack",
-    "build:server": "babel src --out-dir build",
-    "copyAll": "shx cp -R src/static build && cp -R src/views build",
-    "build": "npm run build:server && npm run build:assets && npm run copyAll",
-    "prebuild": "shx rm -rf build",
     "tunnel": "ngrok http 4000",
-    "start": "node build/init.js",
-    "prestart": "npm run build"
+    "start": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static'"
   },
   "devDependencies": {
     "eslint": "^7.5.0"

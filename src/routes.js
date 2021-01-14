@@ -5,7 +5,7 @@ const LOGIN = "/login";
 const LOGOUT = "/logout";
 const SEARCH = "/search";
 const FMHOME = "/fmhome"
-
+const FJOIN = '/fjoin'
 //Users
 const USERS = "/users";
 const EDIT_PROFILE = "/edit-profile";
@@ -62,8 +62,19 @@ const POSTING_COMMENTS = "/posting-comments"
 // community
 
 const COMMUNITY = "/community"
+const POSTLIKE = "/postlike"
+const AUTH = "/auth/:id"
 
+const USERDATA = "/userData"
+const MBTIUSER = "/:id"
 
+const LIKEUSER= "/likeUser"
+const DELETE_USER = "/deleteUser"
+const MHOME = "/mhome"
+
+const TEST2 = "/test"
+
+const ALBUMUPLOAD = "/album"
 const routes = {
     home: HOME,
     join : JOIN,
@@ -71,10 +82,25 @@ const routes = {
     logout : LOGOUT,
     search : SEARCH,
     users : USERS,
+    album : ALBUMUPLOAD,
+    test : TEST2,
     me : ME,
+    fjoin: FJOIN,
+    male:MHOME,
     fmhome : FMHOME,
     community : COMMUNITY,
     filter: FILTER,
+    postlike : POSTLIKE,
+    userData : USERDATA,
+    likeUser : LIKEUSER,
+    deleteUser : DELETE_USER,
+    auth : (id) => {
+        if(id){
+            return `/auth/${id}`;
+        }else {
+            return AUTH;
+        }
+    },
     userDetail : (id) => {
         if(id){
             return `/users/${id}`;
@@ -165,7 +191,6 @@ const routes = {
     postingAuthorize: POSTING_AUTH,
     postingComments : POSTING_COMMENTS,
     postImageData : POST_IMAGEDATA,
-    test: TEST
 }
 
 export default routes;

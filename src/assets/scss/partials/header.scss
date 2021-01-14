@@ -1,5 +1,6 @@
 .header {
-
+    position:fixed;
+    width:100%;
     
     .header__wrapper {
         display: grid;
@@ -9,9 +10,7 @@
         margin: 0 auto;
         align-items: center;
         padding : 10px;
-        grid-template-columns: 20% 80%;
-        margin-bottom: 1em;
-        margin-top:21px;
+        grid-template-columns: 40% 60%;
 
         
         .header__column {
@@ -83,10 +82,10 @@
 select{
 
     width: 5em;
-
+    margin-right:3px;
     height: 2em;
     background-color: white;
-  
+    text-align-last: center;
   
     border-radius: 5px;
   
@@ -116,7 +115,7 @@ select{
 
 .event-wrapper{
     width: 100%;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
     font-size:1.3rem;
     .event{
         display:flex;
@@ -128,8 +127,7 @@ select{
         margin-right: 5%;
         border-radius: 0.5em;
     
-        padding: 15px 52px 15px 49px;
-    
+        font-family:'Noto Sans KR';
         box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
     
     
@@ -139,9 +137,12 @@ select{
 
 html{
     scrollbar-width: none;
+    overflow:hidden;
+    background-color:white;
 }
 
 .filters{
+
     .filter{
         display: grid;
         grid-template-columns: repeat(1,4fr);
@@ -179,4 +180,47 @@ html{
 
 #filter{
     margin-bottom: 31px;
+}
+
+#filterButton{
+    width: 5em;
+
+    height: 2em;
+}
+
+
+.profile-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width : 100%;
+    max-width : 1600px;
+    margin: 0 auto;
+    align-items: center;
+    grid-template-columns: 40% 60%;
+
+    
+    .profile__column {
+        .chatButton{
+            display: flex;
+            align-items: center;
+            div{
+                color: white;
+            }
+        }
+    }
+
+}
+
+
+.album-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width : 100%;
+    max-width : 1600px;
+    margin: 0 auto;
+    align-items: center;
+    grid-template-columns: 40% 60%;
+    .addAlbum{
+        justify-self: self-end ;
+    }
 }

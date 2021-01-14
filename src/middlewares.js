@@ -36,7 +36,7 @@ export const uploadAvatar = multerAvatar.single("avatar");
 export const uploadImage = multerImage.single("img");
 
 export const localsMiddleware = (req,res,next) => {
-    res.locals.siteName = "WERO";
+    res.locals.siteName = "연고링";
     res.locals.routes = routes;
     res.locals.loggedUser = req.user || null;
     next();

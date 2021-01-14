@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
     title: {
-        type: String,
-        required: true
+        type: String
     },
     description: {
         type: String,
@@ -11,7 +10,7 @@ const PostSchema = new mongoose.Schema({
     },
     createdAt : {
         type: Date,
-        default : Date.now
+        default: Date.now()
     },
     updatedAt : {
         type: Date

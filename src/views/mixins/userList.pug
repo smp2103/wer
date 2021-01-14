@@ -1,15 +1,15 @@
 mixin userList(user={})
     
-    div(class="grid-container")
+    div(class=`${user.mbti} ${user.univ} grid-container`)
         .col
             .information-container.scale
-                .u-profile
+                a(href=`/users/${user.id}`).u-profile
                     img.u-avatar(src=user.avatarUrl)
                     .u-container
-                        
-                        .u-info #{user.univ} / #{user.mbti} / #{user.age}살
+
+                        .u-info #{user.univ} / #{user.mbti} / #{user.age}살 / #{user.sex}
                         .u-name #{user.name}
-                .u-description #{user.description}
+                a(href=`/users/${user.id}`).u-description #{user.style}<br>#{user.description}
                 .u-likeButton
                     .like-wrapper
                         button(class="like", value = user.id )
@@ -17,6 +17,6 @@ mixin userList(user={})
                         .likeNum #{user.like}
 
                     
-                    
+                
 
     

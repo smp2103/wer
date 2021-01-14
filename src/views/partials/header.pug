@@ -3,7 +3,10 @@ header.header
         .header__column
             .brand
                 a(href=routes.home)
-                    img(src="/static/logo.jpg")
+                    img(src="/static/logo.svg")
+                span(style="margin-left:5px; color:#444444f0;" class="logoName") 연
+                span(class="logoName" style="margin-left:3px; color:#444444f0;") 고
+                span(class="logoName" style="margin-left:3px; color:#444444f0; ") 링
         .header__column
             ul
                 if !loggedUser
@@ -14,10 +17,9 @@ header.header
                 else
                     li
                         //- a(href=`/users${routes.userDetail(loggedUser.id)}`) Profile
-                        a(href=routes.me) 프로필
+                        a(href=routes.logout style="font-size:11px; color:#b7b6b6") 로그아웃
                     li
-                        a(href=routes.logout) 로그아웃
+                        a(href="https://open.kakao.com/o/s7kM2oQc" style="font-size:11px; color:#b7b6b6") 신고하기
     .event-wrapper
-        .event
-            div(style="text-align:center; font-size: 10px;") 가장 좋은 피드백을 쏜 사람한테 5만원준다!
-
+        a(href="https://open.kakao.com/o/sU9LOTQc").event
+            div(style="text-align:center; font-size: 10px; color:red; font-weight:400;") [ 이벤트 ] <br><br> ♥가장 Best 연고링후기에게 2만원 쏜다! ♥ (-1/20)

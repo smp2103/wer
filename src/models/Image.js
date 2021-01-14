@@ -6,8 +6,7 @@ const imageSchema = new mongoose.Schema({
         required : "File URL is required",
     },
     title: {
-        type : String,
-        required : "TItle is required"
+        type : String
     },
     description : String,
     views: {
