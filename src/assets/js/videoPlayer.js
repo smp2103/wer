@@ -1,3 +1,6 @@
+// 안쓰는 함수
+
+
 import getBlobDuration from "get-blob-duration";
 
 const videoContainer = document.getElementById("jsVideoPlayer");

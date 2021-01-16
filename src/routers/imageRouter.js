@@ -1,4 +1,4 @@
-//수많은 라우트들이 담긴 파일
+//안쓰는거
 import express from "express";
 import routes from "../routes";
 import { getimageUpload, postimageUpload, imageDetail } from "../controller/imageController";

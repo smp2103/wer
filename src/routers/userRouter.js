@@ -1,4 +1,4 @@
-//수많은 라우트들이 담긴 파일
+// My탭 
 import express from "express";
 import routes from "../routes";
 import { changePassword, userDetail, getEditProfile, postEditProfile, getChangePassword, postChangePassword, message, likeUser, getAlbumUpload, postAlbumUpload, getAlbumDelete, postAlbumDelete } from "../controller/userController";

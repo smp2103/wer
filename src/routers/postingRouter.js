@@ -1,4 +1,4 @@
-//수많은 라우트들이 담긴 파일
+// 게시판 관련 ( 안쓰는게 대다수)
 import express from "express";
 import routes from "../routes";
 import { getPosting, postDetail, deletePosting, getPostingAuthorization, postPostingAuthorization, deleteGift, getPostingComments, postAddComment } from "../controller/postingController";

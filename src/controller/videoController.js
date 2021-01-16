@@ -1,3 +1,5 @@
+// search 빼고 안쓰는함수
+
 import routes from "../routes";
 import Video from "../models/Video";
 import Image from "../models/Image"

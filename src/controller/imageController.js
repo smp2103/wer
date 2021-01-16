@@ -1,3 +1,6 @@
+// 이미지 업로드관련 컨트롤러
+// 앨범 이미지 업로드
+
 import routes from "../routes"
 import Image from "../models/Image"
 import Post from "../models/Post"

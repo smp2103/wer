@@ -1,3 +1,6 @@
+// 게시판 관련
+// 게시판 댓글 / 좋아요 기능 함수 
+
 import routes from "../routes";
 import Post from "../models/Post"
 import Video from "../models/Video"
@@ -7,7 +10,7 @@ import User from "../models/User"
 import nodemailer from "nodemailer"
 import axios from "axios";
 import dotenv from "dotenv"
-import Question from "../models/Question"
+
 dotenv.config();
 
 //커뮤니티
@@ -131,7 +134,7 @@ export const getPost = async (req,res) => {
     res.render("newGift") 
 };
 
-// GIFTWEB 신청 post callback
+
 export const postPost = async (req,res) =>{
     const { 
         body : { description },

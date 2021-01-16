@@ -1,4 +1,4 @@
-//수많은 라우트들이 담긴 파일
+// axios 처리 하는 라우트
 import express from "express";
 import routes from "../routes";
 import { postAddComment, postImageData, openModal, like, postlike, deletePosting } from "../controller/postingController";

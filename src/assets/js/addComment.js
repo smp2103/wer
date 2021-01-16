@@ -1,6 +1,7 @@
 import axios from "axios";
 import xlsx from "xlsx";
 
+// 여기가 대부분의 브라우저에서 쓰이는 js 함수들
 
 
 

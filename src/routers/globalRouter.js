@@ -1,3 +1,7 @@
+// ykring.site/*
+
+
+
 import express from "express";
 import routes from "../routes";
 import { home, search, posting } from "../controller/videoController";

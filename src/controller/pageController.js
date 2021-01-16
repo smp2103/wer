@@ -1,3 +1,6 @@
+// 안쓰는 함수들
+
+
 import Post from "../models/Post"
 import User from "../models/User"
 
