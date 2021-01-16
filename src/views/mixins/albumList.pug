@@ -1,0 +1,4 @@
+mixin albumList(image = {})
+    .imageBlock#modal-btn
+        img.albumImage(src=image.fileUrl,controls=true)
+        button(value = `${image.id}` id="albumDelete") 삭제

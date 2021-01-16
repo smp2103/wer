@@ -9,22 +9,64 @@ const postings = document.getElementById('postings')
 const join = document.getElementById('join')
 const postDate = document.getElementsByClassName('postDate')
 const comment = document.getElementById('commentForm-wrapper')
+const postDelete = document.getElementById('postDelete')
+
+const searchButton = document.getElementById('searchButton')
+const albumDeleteButton = document.getElementById('albumDelete')
+
+if(albumDeleteButton){
+
+  albumDeleteButton.addEventListener('click',async function(){
+    const userId = window.location.href.split("/")[4];
+    const imageId = albumDeleteButton.value;
+    const response = await axios({
+      method: 'post',
+      url: `/users/${userId}/albumDelete`,
+      data: {
+        userId,
+        imageId
+      }
+    })
+  })
+  
+  
+}
+
+if(searchButton){
+  searchButton.addEventListener('click',function(){
+    const searchBar = document.getElementById('searchBar')
+    searchBar.placeholder = "친구 찾기"
+    searchBar.style = "border: 1px solid grey;"
+  })
+}
+
+
+
+
+
+if(postDelete) {
+  postDelete.addEventListener('click',async function (){
+    const postId = postDelete.value;
+    const response = await axios({
+      method: 'post',
+      url: `/api/postDelete`,
+      data: {
+        postId
+      }
+    })
+
+    if (response.status === 200) {
+      alert('삭제되었습니다')
+    }
+  })
+}
+
 
 if(comment){
   comment.nextSibling.style.height = "56%"
 }
 
-// if(postDate) {
-//   console.log(1)
-//   const date = document.getElementsByClassName('date')
-//   console.log(date)
-//   const refreshDate = function () {
-//     for(let k=0; k<date.length;k++){
-//       date[k].innerHTML = timeForToday(date[k].value)
-//     }
-//   } 
-//   setInterval(refreshDate,10000)
-// }
+
 
 var getFile = document.getElementById("getFile")
 
@@ -83,7 +125,7 @@ if (join) {
         //엑셀파일의 시트 정보를 읽어서 JSON 형태로 변환한다.
         workbook.SheetNames.forEach(function (item, index, array) {
           var EXCEL_JSON = xlsx.utils.sheet_to_json(workbook.Sheets[item]);
-          console.log(EXCEL_JSON)
+          console.log(JSON.stringify(EXCEL_JSON))
           const name = document.getElementById("name")
           const sex = document.getElementById("sex")
           const mbti = document.getElementById("mbti")
@@ -114,18 +156,7 @@ if (join) {
   
 
 }
-// if(image){
-//   console.log(image)
-//     image.onchange = function() {
-//         const imageList = image.files;
-//         const reader = new FileReader();
 
-//         reader.readAsDataURL(imageList[0]);
-//         reader.onload = function() {
-//             imagePreview.src = reader.result;
-//         }
-//     }
-// }
 
 if (window.location.href.split('/').pop() === "mhome") {
   const maleButton = document.getElementById('maleButton')
@@ -210,7 +241,7 @@ const pb = document.querySelectorAll('.postlike')
 if (pb) {
   pb.forEach(el => el.addEventListener('click', async function () {
     const postId = this.value;
-    const likeNumb = this.nextSibling
+    const likeNumb = this.lastChild
     const response = await axios({
       method: 'post',
       url: `/api/postlike`,
@@ -232,7 +263,7 @@ if (pb) {
 if (lb) {
   lb.forEach(el => el.addEventListener('click', async function () {
     const userId = this.value;
-    const likeNumb = this.nextSibling
+    const likeNumb = this.lastChild
     const response = await axios({
       method: 'post',
       url: `/api/like`,
@@ -262,35 +293,6 @@ const minusLike = (node) => {
 
 
 
-
-// const sendLike = async() => {
-//   const userId = this.value;
-//   console.log("sendLike")
-
-//   const response = await axios({
-//     method: 'post',
-//     url: `/api/like`,
-//     data: {
-//        userId
-//     }
-//   }); 
-
-
-
-//   if( response.status === 200){
-//     console.log(response)
-//     addLike();
-//   } else if(response.status === 201){
-//     minusLike();
-//   }
-// }
-
-// const addComment = (answer,user) => {
-//   answerList.innerHTML = answer;
-//   console.log("add")
-
-
-// };
 const addComment = function (comment,user) {
   // 생성.
 

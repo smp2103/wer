@@ -1,0 +1,10 @@
+extends layouts/main
+include mixins/albumList
+
+block content
+    each item in images
+                +albumList({
+                    fileUrl: item.fileUrl,
+                    creator: item.creator,
+                    id: item._id
+                })

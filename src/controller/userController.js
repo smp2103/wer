@@ -10,6 +10,8 @@ export const getJoin = async (req, res) => {
         sex: '남자'
     })
 
+    console.log(user.length)
+
 
 
     res.render('join', {
@@ -74,6 +76,33 @@ export const postFJoin = async (req, res, next) => {
         // To Do: Register User
         // To Do: Log User In
     }
+}
+
+export const loginTest = async (req,res) => {
+
+    const userList =[];
+    try{
+        for(let k of userList){
+            const user = await User({
+                name : k.name,
+                email : k.email,
+                mbti : k.mbti,
+                description : k.description,
+                sex : k.sex,
+                link : k.link,
+                univ : k.univ,
+                age : k.age,
+                style : k.style
+            });
+            User.register(user, k.password);
+            console.log(1)
+        }
+    } catch(error){
+        console.log(error)
+    }
+    
+    
+    
 }
 
 export const postJoin = async (req, res, next) => {
@@ -402,7 +431,8 @@ export const postAlbumUpload = async (req,res) => {
     const {params:{id},file} = req;
     const users = await User.findById(id)
     const image = await Image.create({
-        fileUrl : file.location
+        fileUrl : file.location,
+        creator: users._id
     })
 
     users.images.push(image._id)
@@ -410,4 +440,31 @@ export const postAlbumUpload = async (req,res) => {
 
     res.redirect(routes.me)
      
+}
+
+export const getAlbumDelete = async (req,res) => {
+
+    const {params:{id}} = req;
+    const user =  await User.findById(id).populate('images')
+    const images = user.images
+    console.log(images)
+
+    res.render('albumDelete',{pageTitle:"연고링",images})
+}
+
+export const postAlbumDelete = async (req,res) => {
+    const {body:{userId,imageId}} = req;
+    const user = await User.findById(userId)
+    const image = await Image.findOneAndDelete(imageId);
+
+    const images = user.images
+
+    if(images.includes(imageId)) {
+        images.splice(images.indexOf(imageId),1)
+    }
+
+    user.save();
+
+    res.redirect(routes.me)
+    
 }

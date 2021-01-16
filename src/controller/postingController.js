@@ -139,12 +139,13 @@ export const postPost = async (req,res) =>{
     } =req;
 
     const a = await User.findById(user._id)
-
+    console.log(new Date().getTime())
     const newPosting = await Post.create({
         description,
         creator: user._id,
         creatorName: a.name,
-        like : 0
+        like : 0,
+        createdAt: new Date().getTime()
     });
     console.log(newPosting)
     req.user.posts.push(newPosting._id);
@@ -195,7 +196,8 @@ export const postAddComment = async (req, res) => {
             description: comment,
             creator : user.id,
             post: post._id,
-            creatorName : user.name
+            creatorName : user.name,
+            createdAt: new Date().getTime()
         })
         post.comments.push(newComment)
         post.save();
@@ -223,7 +225,7 @@ export const postDetail = async (req,res) => {
         });
         const comments = post.comments
         const timeForToday =  function (value) {
-            const today = new Date();
+            const today = new Date(); // 생성 시각
             const timeValue = new Date(value);
         
             const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
@@ -258,15 +260,15 @@ export const postDetail = async (req,res) => {
 
 export const deletePosting =  async (req,res) => {
     const {
-        params : {id}
+        body:{postId}
     } =req;
     try{
-        const post = await Post.findById(id);
+        const post = await Post.findById(postId);
         if(post.creator != req.user.id){
             throw Error();
 
         }else{
-            await Post.findOneAndRemove({_id:id});
+            await Post.findOneAndRemove({_id:postId});
         }
     }catch(error){};
 
@@ -348,29 +350,6 @@ export const postlike = async (req,res) => {
 
 }
 
-
-
-
-export const timeForToday =  function (value) {
-    const today = new Date();
-    const timeValue = new Date(value);
-  
-    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
-    if (betweenTime < 1) return '방금전';
-    if (betweenTime < 60) {
-        return `${betweenTime}분전`;
-    }
-  
-    const betweenTimeHour = Math.floor(betweenTime / 60);
-    if (betweenTimeHour < 24) {
-        return `${betweenTimeHour}시간전`;
-    }
-  
-    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-    if (betweenTimeDay < 365) {
-        return `${betweenTimeDay}일전`;
-    }
-  
-    return `${Math.floor(betweenTimeDay / 365)}년전`;
-  }
-  
+export const getNotice = function (req,res) {
+    res.render('notice',{pageTitle:'연고링'})
+}

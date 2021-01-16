@@ -8,6 +8,9 @@ header.header
                 span(class="logoName" style="margin-left:3px; color:#444444f0;") 고
                 span(class="logoName" style="margin-left:3px; color:#444444f0; ") 링
         .header__column
+            form(action=routes.search, method="get")
+                input(type="text", name="term" id="searchBar")
+        .header__column
             ul
                 if !loggedUser
                     //- li 
@@ -17,9 +20,11 @@ header.header
                 else
                     li
                         //- a(href=`/users${routes.userDetail(loggedUser.id)}`) Profile
-                        a(href=routes.logout style="font-size:11px; color:#b7b6b6") 로그아웃
+                        //- a(href=routes.logout style="font-size:11px; color:#b7b6b6") 검색
+                        button(id="searchButton")
+                            <i class="fas fa-search"></i>
                     li
                         a(href="https://open.kakao.com/o/s7kM2oQc" style="font-size:11px; color:#b7b6b6") 신고하기
     .event-wrapper
-        a(href="https://open.kakao.com/o/sU9LOTQc").event
-            div(style="text-align:center; font-size: 10px; color:red; font-weight:400;") [ 이벤트 ] <br><br> ♥가장 Best 연고링후기에게 2만원 쏜다! ♥ (-1/20)
+        a(href=routes.notice).event
+            div(style="text-align:center; font-size: 10px; color:red; font-weight:400;") [공지사항 보러가기] <br><br> 프로토타입이라 불편한점이 있을수있습니다. 지속적으로 개선중입니다 ㅠ

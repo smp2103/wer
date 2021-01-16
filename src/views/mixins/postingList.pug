@@ -13,13 +13,16 @@ mixin postingList(post={})
                         .u-name #{post.user.name}
                 a(href=`${routes.postDetail(post.id)}`).u-description #{post.description}
                     div <br>
-                    .date=timeForToday(post.createdAt)
+                    .sub-wrapper(style="display:flex;")
+                        .date=timeForToday(post.createdAt)
+                        <i class="far fa-comment" style="margin-left:13px; align-self:center;"></i> 
+                        span(style="margin-left: 5px;") #{post.comments.length}
             
                 .u-likeButton
                     .like-wrapper
-                        button(class="postlike", value = post.id )
+                        button(class="postlike", value = post.id style= "grid-column:3/4" )
                             img(src="/static/heart.svg" class="heart")
-                        .likeNum #{post.like}
+                            .likeNum #{post.like}
     
     
     //- div(class="grid-container")

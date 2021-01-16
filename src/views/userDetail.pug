@@ -17,19 +17,23 @@ block content
                 a(href=`${user.link}`).u-description #{user.style}<br>#{user.description}
                 .u-likeButton
                     .like-wrapper
-                        button(class="like", value = user.id )
+                        button(class="like", value = user.id style="grid-column:4/5" )
                             img(src="/static/heart.svg" class="heart")
-                        .likeNum #{user.like}
+                            .likeNum #{user.like}
     .album
         .album-wrapper
             button.albumText.hearts 앨범
             if loggedUser && loggedUser.id === user.id    
+                    
                 .albumUpload(style="text-align-last:right;")
                     a(href=`${routes.userDetail(user.id)}${routes.album}`)
                         button.hearts 업로드
+                    a(href=`${routes.userDetail(user.id)}${routes.albumDelete}`)
+                        button.hearts 삭제
         each item in images
                 +imageBlock({
-                    fileUrl: item.fileUrl
+                    fileUrl: item.fileUrl,
+                    creator: item.creator
                 })
 
                 

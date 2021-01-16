@@ -10,6 +10,7 @@ mixin commentList(comment={})
                     .u-container
                         .u-info #{comment.creator.univ} / #{comment.creator.mbti} / #{comment.creator.age}살 / #{comment.creator.sex}
                         .u-name #{comment.creator.name}
-                .u-description #{comment.description}
+                #comment-description.u-description(style="overflow:auto; white-space: normal; text-overflow:unset;") #{comment.description}
                     div <br>
                     .date=timeForToday(comment.createdAt)
+                    

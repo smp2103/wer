@@ -12,9 +12,13 @@ mixin userList(user={})
                 a(href=`/users/${user.id}`).u-description #{user.style}<br>#{user.description}
                 .u-likeButton
                     .like-wrapper
-                        button(class="like", value = user.id )
+                        .countImage(style="grid-column:2/3; margin-top:2px;")
+                            .i-wrapper
+                                <i class="far fa-images" style="font-size:15px"></i>
+                            div(style="text-align:center; font-weight:600; font-size:13px; width:14px; margin:2.5px auto;") #{user.length}
+                        button(class="like", value = user.id style="grid-column:4/5" )
                             img(src="/static/heart.svg" class="heart")
-                        .likeNum #{user.like}
+                            .likeNum #{user.like}
 
                     
                 

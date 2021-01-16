@@ -3,6 +3,7 @@ import Video from "../models/Video";
 import Image from "../models/Image"
 import Comment from "../models/Comment"
 import Post from "../models/Post"
+import User from "../models/User"
 import Axios from "axios";
 export const home = async (req,res) => {
     try{
@@ -20,15 +21,13 @@ export const search =  async (req, res) => {
     const {
         query: {term: searchingBy}
     } = req;
-    let videos= [];
-    let images= [];
+    let users= [];
     try{
-        videos = await Video.find({title: {$regex: searchingBy, $options: "i"}})
-        images = await Image.find({title: {$regex: searchingBy, $options: "i"}})
+        users = await User.find({name: {$regex: searchingBy, $options: "i"}})
     }catch(error){
 
     };
-    res.render('Search', {pageTitle: 'Search',searchingBy,videos,images});
+    res.render('search', {pageTitle: '친구 찾기',searchingBy,users});
 }
 
 

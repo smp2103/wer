@@ -1,26 +1,24 @@
 extends layouts/main
 include mixins/videoBlock
-include mixins/imageBlock
+include mixins/userList
 //- main.pug의 내용을 복사하여 쓰겠다
 //- block content 의 내용만 작성하면 됨!
 
 block content
     .search__header 
-        h3 Searching By #{searchingBy}
-    .home-videos
-        if videos.length ===0
-            h5 No Videos Found
-        each item in videos
-            +videoBlock({
-                title: item.title,
-                views: item.views,
-                videoFile: item.videoFile,
-                id : item.id
+        div 친구 검색 : #{searchingBy}
+
+    each item in users
+        +userList({
+                id: item._id,
+                name: item.name,
+                description: item.description,
+                sex: item.sex,
+                link: item.link,
+                avatarUrl: item.avatarUrl,
+                age: item.age,
+                univ: item.univ,
+                mbti: item.mbti,
+                like: item.like,
+                style: item.style
             })
-        each item in images
-            +imageBlock({
-                    id : item.id,
-                    title: item.title,
-                    views: item.views,
-                    img: item.fileUrl
-                })
