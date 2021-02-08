@@ -83,7 +83,7 @@ a{
   width: 40px;
   height: 40px;
 
-  background-color: rgba(106, 53, 238, 0.87);
+  background-color: #2f363ef0;
   border-radius: 70%;
   display:flex;
   text-align: center;
@@ -104,7 +104,7 @@ a{
   width: 80px;
   height: 40px;
   border-radius: 10px;
-  background-color : #00dcc8eb;
+  background-color : #2f363ef0;
 
   position: fixed;
   bottom:13%;
@@ -125,11 +125,14 @@ a{
   max-width: 100%;
   margin: 0 auto;
   display:block;
+  img{
+    width:100%;
+    height:auto;
+  }
 }
 
 .albumImage{
-  width:300px;
-  height:300px;
+  width:80%;
   display:block;
   margin: 0 auto;
 }
@@ -140,4 +143,17 @@ a{
 
 .imageBlock{
   margin-bottom: 50px;
+}
+
+#ageFilter {
+  .ageInput{
+    width: 30px;
+    border: 1px solid black;
+  }
+}
+
+#ageFilter {
+  label{
+    
+  }
 }

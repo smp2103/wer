@@ -9,7 +9,7 @@ mixin postingList(post={})
                     img.u-avatar(src=post.user.avatarUrl)
                     button(class="postDate" style="display:none;" value=`${post.createdAt}`)
                     .u-container
-                        .u-info #{post.user.univ} / #{post.user.mbti} / #{post.user.age}살 / #{post.user.sex}
+                        .u-info #{post.user.univ} / #{post.user.mbti} / #{post.user.age}살 / #{post.user.sex} / #{post.user.location ? post.user.location : ""}
                         .u-name #{post.user.name}
                 a(href=`${routes.postDetail(post.id)}`).u-description #{post.description}
                     div <br>
@@ -20,6 +20,11 @@ mixin postingList(post={})
             
                 .u-likeButton
                     .like-wrapper
+                        if post.images[0]
+                            .countImage(style="grid-column:2/3; margin-top:2px;")
+                                .i-wrapper(style="text-align:center;")
+                                    <i class="far fa-images" style="font-size:15px"></i>
+                                div(style="text-align:center; font-weight:600; font-size:13px; width:14px; margin:2.5px auto;")
                         button(class="postlike", value = post.id style= "grid-column:3/4" )
                             img(src="/static/heart.svg" class="heart")
                             .likeNum #{post.like}

@@ -37,11 +37,13 @@ block content
     if loggedUser
         .filters
             div.univ-filter
-                form(action=routes.filter,method="post",id="filter")
+                form(action=routes.male,method="post")
                     select(name='univ', id = "univFilter")
                         option(value='' selected) 학교
                         option(value='연세대학교') 연세대
                         option(value='고려대학교') 고려대
+                        option(value="서강대학교") 서강대
+                        option(value="서울대학교") 서울대
                     select(name='mbti', id = "mbtiFilter")
                         option(value="" selected) MBTI
                         option(value='ISTJ') ISTJ
@@ -60,7 +62,7 @@ block content
                         option(value="ESFJ") ESFJ
                         option(value="ENFJ") ENFJ
                         option(value="ENTJ") ENTJ
-                    input(type="button" value='친구찾기',id="filterButton")
+                    input(type="submit" value='친구찾기')
                     span(id="refresh")
                         i(style="width:15px; margin-left:10px; color: #4444447a;").fas.fa-sync-alt
         .myProfile
@@ -77,50 +79,29 @@ block content
                     mbti: item.mbti,
                     like: item.like,
                     style: item.style,
-                    length : item.images.length
+                    length : item.images.length,
+                    location : item.location
                 })
-        //- .menu
-        //-     .posting-number 
-                //- div 진행중인 기획안&nbsp;#{posts.length}&nbsp;개
-            //- .posting-button-wrapper
-            //-     a(href=routes.newGift).giftButton
-            //-         button 기획서 작성하기
 
-        .users
-            each item in users
-                    +userList({
-                        id: item._id,
-                        name: item.name,
-                        description: item.description,
-                        sex: item.sex,
-                        link: item.link,
-                        avatarUrl: item.avatarUrl,
-                        age: item.age,
-                        univ: item.univ,
-                        mbti: item.mbti,
-                        like: item.like,
-                        style: item.style,
-                        length : item.images.length
-                    })
+        //- .users
+        //-     each item in users
+        //-             +userList({
+        //-                 id: item._id,
+        //-                 name: item.name,
+        //-                 description: item.description,
+        //-                 sex: item.sex,
+        //-                 link: item.link,
+        //-                 avatarUrl: item.avatarUrl,
+        //-                 age: item.age,
+        //-                 univ: item.univ,
+        //-                 mbti: item.mbti,
+        //-                 like: item.like,
+        //-                 style: item.style,
+        //-                 length : item.images.length
+        //-             })
 
     else
         
     
-    //- else
-
-    //-     .users
-    //-         each item in users
-    //-                 +userList({
-    //-                     id: item._id,
-    //-                     name: item.name,
-    //-                     description: item.description,
-    //-                     sex: item.sex,
-    //-                     link: item.link,
-    //-                     avatarUrl: item.avatarUrl,
-    //-                     age: item.age,
-    //-                     univ: item.univ,
-    //-                     mbti: item.mbti,
-    //-                     like: item.like,
-    //-                     style: item.style
-    //-                 })
+ 
 

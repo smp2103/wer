@@ -21,14 +21,20 @@ if(albumDeleteButton){
     const userId = window.location.href.split("/")[4];
     const imageId = albumDeleteButton.value;
     const response = await axios({
-      method: 'post',
-      url: `/users/${userId}/albumDelete`,
-      data: {
-        userId,
-        imageId
+        method: 'post',
+        url: `/users/${userId}/albumDelete`,
+        data: {
+          userId,
+          imageId
+        }
+      })
+
+      if(response.status === 200){
+        window.location.href = ""
       }
     })
-  })
+
+
   
   
 }
@@ -64,7 +70,7 @@ if(postDelete) {
 
 
 if(comment){
-  comment.nextSibling.style.height = "56%"
+  comment.nextSibling.style.height = "63%"
 }
 
 

@@ -3,9 +3,13 @@ extends layouts/main
 
 block content
     .form-container
-        form(method='post',action=`${routes.newGift}`) 
+        form(method='post',action=`${routes.newGift}` enctype="multipart/form-data") 
 
             //- input(type="text",placeholder="제목", name="title")
+            #preview
+            .fileUpload
+                label(for="avatar").default 사진업로드
+                input(type="file",id="getFile",name="img", accept="image/*").rectangle
             textarea(placeholder="글을 작성하세요", name="description", required=true).newPostTextarea
 
 

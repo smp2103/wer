@@ -79,9 +79,12 @@ const LOVELOVE = "/love/love"
 const ALBUMUPLOAD = "/album"
 
 const POSTDELETE = "/postDelete"
-
+const NEWJOIN = "/newJoin"
 const LOGINTEST = "/loginTest"
 const ALBUMDELETE = "/albumDelete"
+const DELETEPROFILE = "/deleteProfile"
+
+const TEST3 = "/test2"
 
 const NOTICE = "/notice"
 const routes = {
@@ -89,8 +92,10 @@ const routes = {
     join : JOIN,
     logintest:LOGINTEST,
     albumDelete: ALBUMDELETE,
+    newjoin: NEWJOIN,
     login : LOGIN,
     love : LOVE,
+    test2 : TEST3,
     lovelove : LOVELOVE,
     logout : LOGOUT,
     search : SEARCH,
@@ -109,6 +114,7 @@ const routes = {
     likeUser : LIKEUSER,
     deleteUser : DELETE_USER,
     postDelete : POSTDELETE,
+    deleteProfile : DELETEPROFILE,
     auth : (id) => {
         if(id){
             return `/auth/${id}`;

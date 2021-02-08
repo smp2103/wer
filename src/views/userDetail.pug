@@ -12,9 +12,9 @@ block content
                     img.u-avatar(src=user.avatarUrl)
                     .u-container
 
-                        .u-info #{user.univ} / #{user.mbti} / #{user.age}살 / #{user.sex}
+                        .u-info #{user.univ} / #{user.mbti} / #{user.age}살 / #{user.sex} / #{user.location ? user.location : ""}
                         .u-name #{user.name}
-                a(href=`${user.link}`).u-description #{user.style}<br>#{user.description}
+                a(href=`${user.link}` style="overflow:auto; white-space:pre-wrap; text-overflow:unset;").u-description #{user.style}<br>#{user.description}
                 .u-likeButton
                     .like-wrapper
                         button(class="like", value = user.id style="grid-column:4/5" )
@@ -48,10 +48,10 @@ block content
 block cont
     //- 정보수정
     if loggedUser && loggedUser.id === user.id
-        a(href=`/users${routes.editProfile}` ).Ellipse-19
-            img(src="/static/pencil.svg")
+        a(href=`/users${routes.editProfile}` ).editProfile
+            button 프로필 변경
     //- 채팅보내기
     if loggedUser && loggedUser.id !== user.id
-        a(href=user.link).Ellipse-20
+        a(href=user.link, target="_blank").Ellipse-20
             div(style="margin:0 auto; color:white;") 말걸기
 

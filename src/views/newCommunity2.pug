@@ -6,7 +6,7 @@ block content
     if loggedUser
         .filters
             div.univ-filter
-                form(action=`${routes.test}`,method="get",id="filter")
+                form(action=`${routes.test2}`,method="get",id="filter")
                     select(name='univ', id = "univFilter")
                         option(value='' selected) 학교
                         option(value='연세대학교') 연세대
@@ -93,7 +93,7 @@ block content
                         option(value="경상남도") 경상남도
                         option(value="제주") 제주도
                     input(type="submit" value='친구찾기')
-                    a(href=`${routes.test}?${queryString}`)
+                    a(href=`${routes.test2}?${queryString}`)
                         i(style="width:15px; margin-left:10px; color: #4444447a;").fas.fa-sync-alt
         
         //- -for (let i = startPage; i <= endPage ; i++)
@@ -118,7 +118,7 @@ block content
         //-                         timeForToday,
         //-                         comments : item.comments
         //-                     }) 
-        div(style="margin-bottom: 5px;") #{univ ? univ : "" } #{mbti ? mbti : ""  } #{age1 ? `${age1}살` : ""} ~ #{age2 ? `${age2}살` : ""} : #{totalUser} 명 검색됨 
+        div(style="margin-bottom: 5px;") #{univ ? univ : "" } #{mbti ? mbti : ""  } #{age1 ? `${age1}살` : ""} ~ #{age2 ? `${age2}살` : ""} : #{totalUser} 명 검색됨
         .users
             each item in users
                     +userList({
@@ -140,36 +140,61 @@ block content
 
         .pageBox(style="display: flex;margin-top: 12px; justify-content: space-evenly")
 
-
-            if currentPage === endPage
-                a.pageBtn(href=`${routes.test}?${queryString}&page=${currentPage-1}`)
-                    button(style="border:1px solid; margin-right: 10px;text-align:center;")
-                        <i class="fas fa-caret-left"></i>
-                a.pageBtn(href=`${routes.test}?${queryString}&page=${currentPage+1}`)
-                    button(style="border:1px solid; margin-right: 10px;text-align:center;  display:none;")
-                        <i class="fas fa-caret-right"></i>
-            else
-                if currentPage === 1
-                    a.pageBtn(href=`${routes.test}?${queryString}&page=${currentPage-1}`)
-                        button(style="border:1px solid; margin-right: 10px;text-align:center;display:none;")
-                            <i class="fas fa-caret-left"></i>
-                    a.pageBtn(href=`${routes.test}?${queryString}&page=${currentPage+1}`)
+            if users.length < 10
+                div 
+            else 
+                if currentPage === endPage
+                    a.pageBtn(href=`${routes.test2}?${queryString}&page=${currentPage-1}`)
                         button(style="border:1px solid; margin-right: 10px;text-align:center;")
+                            <i class="fas fa-caret-left"></i>
+                    a.pageBtn(href=`${routes.test2}?${queryString}&page=${currentPage+1}`)
+                        button(style="border:1px solid; margin-right: 10px;text-align:center;  display:none;")
                             <i class="fas fa-caret-right"></i>
                 else
-                    a.pageBtn(href=`${routes.test}?${queryString}&page=${currentPage-1}`)
-                        button(style="border:1px solid; margin-right: 10px;text-align:center;")
-                            <i class="fas fa-caret-left"></i>
-                    a.pageBtn(href=`${routes.test}?${queryString}&page=${currentPage+1}`)
-                        button(style="border:1px solid; margin-right: 10px;text-align:center;")
-                            <i class="fas fa-caret-right"></i>
+                    if currentPage === 1
+                        a.pageBtn(href=`${routes.test2}?${queryString}&page=${currentPage-1}`)
+                            button(style="border:1px solid; margin-right: 10px;text-align:center;display:none;")
+                                <i class="fas fa-caret-left"></i>
+                        a.pageBtn(href=`${routes.test2}?${queryString}&page=${currentPage+1}`)
+                            button(style="border:1px solid; margin-right: 10px;text-align:center;")
+                                <i class="fas fa-caret-right"></i>
+                    else
+                        a.pageBtn(href=`${routes.test2}?${queryString}&page=${currentPage-1}`)
+                            button(style="border:1px solid; margin-right: 10px;text-align:center;")
+                                <i class="fas fa-caret-left"></i>
+                        a.pageBtn(href=`${routes.test2}?${queryString}&page=${currentPage+1}`)
+                            button(style="border:1px solid; margin-right: 10px;text-align:center;")
+                                <i class="fas fa-caret-right"></i>
+
+
+            //- if currentPage === endPage
+            //-     a.pageBtn(href=`${routes.test2}?univ=${univ}&mbti=${mbti}&page=${currentPage-1}`)
+            //-         button(style="border:1px solid; margin-right: 10px;text-align:center;")
+            //-             <i class="fas fa-caret-left"></i>
+            //-     a.pageBtn(href=`${routes.test2}?univ=${univ}&mbti=${mbti}&page=${currentPage+1}`)
+            //-         button(style="border:1px solid; margin-right: 10px;text-align:center;  display:none;")
+            //-             <i class="fas fa-caret-right"></i>
+            //- else
+            //-     if currentPage === 1
+            //-         a.pageBtn(href=`${routes.test2}?univ=${univ}&mbti=${mbti}&page=${currentPage-1}`)
+            //-             button(style="border:1px solid; margin-right: 10px;text-align:center;display:none;")
+            //-                 <i class="fas fa-caret-left"></i>
+            //-         a.pageBtn(href=`${routes.test2}?univ=${univ}&mbti=${mbti}&page=${currentPage+1}`)
+            //-             button(style="border:1px solid; margin-right: 10px;text-align:center;")
+            //-                 <i class="fas fa-caret-right"></i>
+            //-     else
+            //-         a.pageBtn(href=`${routes.test2}?univ=${univ}&mbti=${mbti}&page=${currentPage-1}`)
+            //-             button(style="border:1px solid; margin-right: 10px;text-align:center;")
+            //-                 <i class="fas fa-caret-left"></i>
+            //-         a.pageBtn(href=`${routes.test2}?univ=${univ}&mbti=${mbti}&page=${currentPage+1}`)
+            //-             button(style="border:1px solid; margin-right: 10px;text-align:center;")
+            //-                 <i class="fas fa-caret-right"></i>
     else
         .noticeText
             div(style="line-height:3;") 연고링에는 현재 #{m}의 남성분, #{fm}의 여성분들이 이용중입니다! 현재는, MVP테스트로 서울대,고려대,연세대,서강대,한양대,성균관대,중앙대,경희대,외대,시립대,이대 학생들로만 진행중입니다 !
         .qnaButton
             a(href="https://open.kakao.com/o/sAMFlCPc")
                 button(style="width: 100%; margin: 0 auto;") 문의하기
-
             
 
     

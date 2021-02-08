@@ -3,7 +3,12 @@ extends layouts/main
 block content
     .form-container
         form(action=routes.fjoin, method="post")
-            input(type="text",name="name",placeholder="별명",required = true)
+            //- #preview
+            //- .fileUpload
+            //-     label(for="avatar").default 프로필사진
+            //-     //- button(id="setDefault" value="https://rppproto.s3.amazonaws.com/avatar/63ce26c871c4502ff6c957af909dc7df") 기본값
+            //-     input(type="file",id="getFile",name="avatar", accept="image/*").rectangle
+            input(type="text",name="name",placeholder="닉네임",required = true)
 
             //- input(type="text",name="sex",placeholder="성별",required = true)
             //- input(type="text",name="mbti",placeholder="mbti",required = true)
@@ -37,12 +42,20 @@ block content
                                     option(value="ENTJ") ENTJ
             p 학교
             div(style="display:flex; margin-bottom: 10px")
-                label
-                input(type='radio' name='univ' value='연세대학교' style="width:10px;")
-                |  연세대
-                label
-                input(type='radio' name='univ' value='고려대학교' style="width:10px;")
-                |  고려대
+                select(name="univ")
+                    option(value="" selected) 선택
+                    option(value="서울대학교") 서울대학교
+                    option(value="고려대학교") 고려대학교
+                    option(value="연세대학교") 연세대학교
+                    option(value="서강대학교") 서강대학교
+                    option(value="성균관대학교") 성균관대학교
+                    option(value="한양대학교") 한양대학교
+                    option(value="중앙대학교") 중앙대학교
+                    option(value="경희대학교") 경희대학교
+                    option(value="한국외국어대학교") 한국외국어대학교
+                    option(value="시립대학교") 시립대학교
+                    option(value="이화여자대학교") 이화여자대학교
+
 
 
 
@@ -50,14 +63,43 @@ block content
 
             input(type="text",name="description",placeholder="한줄소개",required=true)
 
-            
-            input(type="text",name="style",placeholder="스타일",required=true)
-            input(type="text",name="age",placeholder="나이",required=true)
-            input(type="text",name="link",placeholder="오픈카카오톡링크",required=true)
-            input(type="text",name="email",placeholder="Email",required = true, value =`user${user.length+1000}`)
-            input(type="password",name="password",placeholder="Password",required = true, value = `${user.length+1536}`)
-            input(type="password",name="password2",placeholder="Verify Password",required = true,value = `${user.length+1536}`)
-            input(type="submit",value="Join")
+            input(type="text",name="style",placeholder="스타일 ex) 귀여움",required=true)
+            input(type="text",name="age",placeholder="나이 ex) 22",required=true)
+            .default.age 지역
+            select(name='locat' style="margin-bottom: 5px;")
+                    option(value='' selected) 지역
+                    option(value='서울') 서울
+                    option(value='경기도') 경기도
+                    option(value="강원도") 강원도
+                    option(value="광주") 광주
+                    option(value="대구") 대구
+                    option(value="대전") 대전
+                    option(value="울산") 울산
+                    option(value="세종") 세종
+                    option(value="충청북도") 충청북도
+                    option(value="충청남도") 충청남도
+                    option(value="전라북도") 전라북도
+                    option(value="전라남도") 전라남도
+                    option(value="경상북도") 경상북도
+                    option(value="경상남도") 경상남도
+                    option(value="제주") 제주도
+            input(type="text",name="link",placeholder="오픈프로필링크",required=true)
+            div(style="color:red; margin-bottom: 5px;") 반드시 오픈프로필로해주세요! 오픈카카오톡링크를 이용하시면 이용에 분명 차질이있습니다.
+            input(type="text",name="userEmail",placeholder="인증받을 이메일",required = true)
+            div(style="color : red; margin-bottom: 5px;") 반드시 학교이메일로 정확하게 써주셔야 됩니다! 구글,네이버 전부안되고 학교인증을위해 본인 학교이메일만가능합니다.
+            input(type="text",name="email",placeholder="로그인에 사용할 ID",required = true)
+            input(type="password",name="password",placeholder="Password",required = true, value = `${user+8782}` style="display:none;")
+            input(type="password",name="password2",placeholder="Verify Password",required = true,value = `${user+8782}` style="display:none;")
+            input(type="submit",value="회원가입")
+            .noticeText(style="margin-top:10px;")
+                div(style="width: 100%;") 로그인이 안되는 경우(새로고침 되는 경우), 학교이메일이 올바르지 않거나, 아직 지원하지 않는 학교입니다. 문의사항은 개발자에게 문의해주세요!
+                .qnaButton(style="margin-top:10px;")
+                    a(href="https://open.kakao.com/o/sAMFlCPc")
+                        button(style="width:100%;padding-top:10px;padding-bottom:8px;border: 1.5px solid #6a35ee;color: #7d4ef0;background-color:rgba(106, 53, 238, 0.17)") 문의하기
+        
+
+
+
 
 
 

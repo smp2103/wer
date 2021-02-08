@@ -1,24 +1,44 @@
 mixin userList(user={})
-    
-    div(class=`${user.mbti} ${user.univ} grid-container`)
-        .col
-            .information-container.scale
-                a(href=`/users/${user.id}`).u-profile
-                    img.u-avatar(src=user.avatarUrl)
-                    .u-container
+    if user.hide === 'y'
+        div(class=`${user.mbti} ${user.univ} grid-container` style="display:none;")
+            .col
+                .information-container.scale
+                    a(href=`/users/${user.id}`).u-profile
+                        img.u-avatar(src=user.avatarUrl)
+                        .u-container
 
-                        .u-info #{user.univ} / #{user.mbti} / #{user.age}살 / #{user.sex}
-                        .u-name #{user.name}
-                a(href=`/users/${user.id}`).u-description #{user.style}<br>#{user.description}
-                .u-likeButton
-                    .like-wrapper
-                        .countImage(style="grid-column:2/3; margin-top:2px;")
-                            .i-wrapper
-                                <i class="far fa-images" style="font-size:15px"></i>
-                            div(style="text-align:center; font-weight:600; font-size:13px; width:14px; margin:2.5px auto;") #{user.length}
-                        button(class="like", value = user.id style="grid-column:4/5" )
-                            img(src="/static/heart.svg" class="heart")
-                            .likeNum #{user.like}
+                            .u-info #{user.univ} / #{user.mbti} / #{user.age}살 / #{user.sex} / #{user.location ? user.location : ""}
+                            .u-name #{user.name}
+                    a(href=`/users/${user.id}`).u-description #{user.style}<br>#{user.description}
+                    .u-likeButton
+                        .like-wrapper
+                            .countImage(style="grid-column:2/3; margin-top:2px;")
+                                .i-wrapper(style="text-align:center;")
+                                    <i class="far fa-images" style="font-size:15px"></i>
+                                div(style="text-align:center; font-weight:600; font-size:13px; width:14px; margin:2.5px auto;") #{user.length}
+                            button(class="like", value = user.id style="grid-column:4/5" )
+                                img(src="/static/heart.svg" class="heart")
+                                .likeNum #{user.like}
+    else
+        div(class=`${user.mbti} ${user.univ} grid-container` )
+            .col
+                .information-container.scale
+                    a(href=`/users/${user.id}`).u-profile
+                        img.u-avatar(src=user.avatarUrl)
+                        .u-container
+
+                            .u-info #{user.univ} / #{user.mbti} / #{user.age}살 / #{user.sex} / #{user.location ? user.location : ""}
+                            .u-name #{user.name}
+                    a(href=`/users/${user.id}`).u-description #{user.style}<br>#{user.description}
+                    .u-likeButton
+                        .like-wrapper
+                            .countImage(style="grid-column:2/3; margin-top:2px;")
+                                .i-wrapper(style="text-align:center;")
+                                    <i class="far fa-images" style="font-size:15px"></i>
+                                div(style="text-align:center; font-weight:600; font-size:13px; width:14px; margin:2.5px auto;") #{user.length}
+                            button(class="like", value = user.id style="grid-column:4/5" )
+                                img(src="/static/heart.svg" class="heart")
+                                .likeNum #{user.like}
 
                     
                 

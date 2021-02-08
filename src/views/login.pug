@@ -6,8 +6,13 @@ extends layouts/main
 block content
     .form-container
         form(action=routes.login, method="post")
-            input(type="text",name="email",placeholder="Email")
-            input(type="password",name="password",placeholder="Password")
+            input(type="text",name="email",placeholder="아이디")
+            input(type="password",name="password",placeholder="패스워드")
             input(type="submit",value="LogIn")
+    .noticeText
+        div(style="text-align:center;") 회원가입를 정보를 입력하셨다면 바로 ID,PWD를 이메일로 보내드립니다. 인증시 작성한 이메일을 확인하시고  ID,PWD 를 작성해주세요 .<br> ** 로그인이 되지 않을 경우, 개발자에게 문의주세요 !
+        .qnaButton
+            a(href="https://open.kakao.com/o/sAMFlCPc")
+                button(style="width: 100%; margin: 0 auto;") 문의하기
 
         

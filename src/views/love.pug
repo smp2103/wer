@@ -2,21 +2,29 @@ extends layouts/main
 include mixins/userList
 
 block content
-    button(style="background-color:aquamarine").hearts 나를 좋아해요
-    a(href=routes.lovelove)
-        button.hearts 내가 좋아해요
-    .lovers
-        each item in lover
-                +userList({
-                    id: item._id,
-                    name: item.name,
-                    description: item.description,
-                    sex: item.sex,
-                    link: item.link,
-                    avatarUrl: item.avatarUrl,
-                    age: item.age,
-                    univ: item.univ,
-                    mbti: item.mbti,
-                    like: item.like,
-                    style: item.style
-                })
+    if loggedUser
+        button(style="background-color:aquamarine").hearts 나를 좋아해요
+        a(href=routes.lovelove)
+            button.hearts 내가 좋아해요
+        .lovers
+            each item in lover
+                    +userList({
+                        id: item._id,
+                        name: item.name,
+                        description: item.description,
+                        sex: item.sex,
+                        link: item.link,
+                        avatarUrl: item.avatarUrl,
+                        age: item.age,
+                        univ: item.univ,
+                        mbti: item.mbti,
+                        like: item.like,
+                        style: item.style
+                    })
+    else
+        .noticeText
+            div(style="line-height:3; text-align:center;") 연고링에는 현재 #{m}의 남성분, #{fm}의 여성분들이 이용중입니다! 현재는, MVP테스트로 서울대,고려대,연세대,서강대,한양대,성균관대,중앙대,경희대,외대,시립대,이대 학생들로만 진행중입니다 !
+            div(style="")
+        .qnaButton
+            a(href="https://open.kakao.com/o/sAMFlCPc")
+                button(style="width: 100%; margin: 0 auto;") 문의하기

@@ -16,8 +16,9 @@ dotenv.config();
 //커뮤니티
 export const getCommunity = async (req,res) =>{
     try{
-        const {user} = req;
-        const posts = await Post.find({}).populate('creator').sort({_id: -1});
+        const {user,query:{page}} = req;
+        const m = await User.countDocuments({sex:'남자'})
+        const fm = await User.countDocuments({sex:'여자'})
         
         const timeForToday =  function (value) {
             const today = new Date();
@@ -35,7 +36,7 @@ export const getCommunity = async (req,res) =>{
             }
         
             const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-            if (betweenTimeDay < 2) {
+            if (betweenTimeDay <= 2) {
                 return `${betweenTimeDay}일전`;
             } else if(betweenTimeDay > 2){
                 if(timeValue.getMinutes()<10){
@@ -43,10 +44,35 @@ export const getCommunity = async (req,res) =>{
                 }
                 return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:${timeValue.getMinutes()}`
             }
-        
-            return `${Math.floor(betweenTimeDay / 365)}년전`;
         }
-        res.render('community',{pageTitle : '커뮤니티',posts,timeForToday});
+
+        const totalPost = await Post.countDocuments({}); // (2)
+        if (!totalPost) { // (3)
+            throw Error();
+        }
+        let {
+            startPage,
+            endPage,
+            hidePost,
+            maxPost,
+            totalPage,
+            currentPage
+        } = paging(page, totalPost); // (4)
+        const posts = await Post.find({}).populate('creator') // (5)
+            .sort({_id:-1})
+            .skip(hidePost)
+            .limit(maxPost);
+        res.render("community", { // (6)
+            posts,
+            currentPage,
+            startPage,
+            endPage,
+            maxPost,
+            totalPage,
+            m,
+            fm,
+            timeForToday
+        });
     } catch(error){
         console.log(error);
         res.render('community',{pageTitle : '커뮤니티',posts:[]});
@@ -56,11 +82,25 @@ export const getCommunity = async (req,res) =>{
 export const getLove = async(req,res) => {
     const {user} = req;
 
-    const love = await User.find(user).populate('like_created')
-    const lover = love[0].like_created
+    try{
+        const love = await User.find(user._id).populate('like_created')
+        const lover = love[0].like_created
+        const m = await User.countDocuments({sex:'남자'})
+        const fm = await User.countDocuments({sex:'여자'})
+    
+
+
 
     
-    res.render('love',{pageTitle : '연고링',lover});
+        res.render('love',{pageTitle : '연고링',lover,m,fm});
+    }catch(error){
+        const m = await User.countDocuments({sex:'남자'})
+        const fm = await User.countDocuments({sex:'여자'})
+        res.render('love',{pageTitle : '연고링',lover:[],m,fm});
+    }
+
+
+    
 }
 
 export const getLoveLove = async(req,res) => {
@@ -94,12 +134,79 @@ export const getMuser = async (req,res) => {
 
         shuffle(users)
 
-        res.render('posting',{pageTitle : '연고링',posts,users,me});
+        res.render('posting',{pageTitle : '연고링',posts,users,me}); 
     } catch(error){
         console.log(error);
         res.render('posting',{pageTitle : '연고링',posts:[],users:[],me:[]});
     }
 };
+
+export const postMuser = async (req,res) => {
+    console.log(1)
+    const {
+        query:{page},
+        body:{mbti,univ}
+    } = req; // (1)
+    
+    console.log(page)
+    const timeForToday =  function (value) {
+        const today = new Date();
+        const timeValue = new Date(value);
+
+        const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+        if (betweenTime < 1) return '방금전';
+        if (betweenTime < 60) {
+            return `${betweenTime}분전`;
+        }
+
+        const betweenTimeHour = Math.floor(betweenTime / 60);
+        if (betweenTimeHour < 24) {
+            return `${betweenTimeHour}시간전`;
+        }
+
+        const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+        if (betweenTimeDay <= 2) {
+            return `${betweenTimeDay}일전`;
+        } else if(betweenTimeDay > 2){
+            if(timeValue.getMinutes()<10){
+                return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:0${timeValue.getMinutes()}`
+            }
+            return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:${timeValue.getMinutes()}`
+        }
+
+        return `${Math.floor(betweenTimeDay / 365)}년전`;
+    }
+    try {
+        const totalPost = await User.countDocuments({sex:'남자'}); // (2)
+        if (!totalPost) { // (3)
+            throw Error();
+        }
+        let {
+            startPage,
+            endPage,
+            hidePost,
+            maxPost,
+            totalPage,
+            currentPage
+        } = paging(page, totalPost); // (4)
+        const users = await User.find({sex:'남자',univ,mbti}).populate('creator') // (5)
+            .sort({_id:-1})
+            .skip(hidePost)
+            .limit(maxPost);
+        res.render("newCommunity", { // (6)
+            users,
+            currentPage,
+            startPage,
+            endPage,
+            maxPost,
+            totalPage,
+            timeForToday
+        });
+    } catch(error){
+        console.log(error)
+    }
+    
+}
 //여자
 export const getFMuser = async (req,res) => {
     try{
@@ -138,10 +245,14 @@ export const getPost = async (req,res) => {
 export const postPost = async (req,res) =>{
     const { 
         body : { description },
+        file,
         user
     } =req;
 
     const a = await User.findById(user._id)
+
+    
+
     console.log(new Date().getTime())
     const newPosting = await Post.create({
         description,
@@ -150,8 +261,25 @@ export const postPost = async (req,res) =>{
         like : 0,
         createdAt: new Date().getTime()
     });
+
+    if(file){
+        const postImage = await Image.create({
+            fileUrl : file.location,
+            creator: user._id,
+        })
+        newPosting.images.push(postImage._id)
+        newPosting.save();
+        postImage.post = newPosting._id
+        postImage.save();
+    }
     console.log(newPosting)
+    // 작성자의 게시글 목록
     req.user.posts.push(newPosting._id);
+    // 게시글에 첨부된 이미지
+
+    // 첨부된 이미지가 들어있는 게시글
+    
+
     req.user.save();
     res.redirect(routes.home)
 
@@ -222,7 +350,7 @@ export const postAddComment = async (req, res) => {
 export const postDetail = async (req,res) => {
     const {params:{id}} = req;
     try{
-        const post = await Post.findById(id).populate('creator').populate({
+        const post = await Post.findById(id).populate('creator').populate('images').populate({
             path: 'comments',
             populate: 'creator'
         });
@@ -243,7 +371,7 @@ export const postDetail = async (req,res) => {
             }
         
             const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-            if (betweenTimeDay < 2) {
+            if (betweenTimeDay <= 2) {
                 return `${betweenTimeDay}일전`;
             } else if(betweenTimeDay > 2){
                 if(timeValue.getMinutes()<10){
@@ -266,12 +394,15 @@ export const deletePosting =  async (req,res) => {
         body:{postId}
     } =req;
     try{
-        const post = await Post.findById(postId);
+        const post = await Post.findById(postId).populate('images');
         if(post.creator != req.user.id){
             throw Error();
 
         }else{
             await Post.findOneAndRemove({_id:postId});
+            if(post.images[0]){
+                await Image.findOneAndRemove({_id:post.images[0]._id})
+            }
         }
     }catch(error){};
 
@@ -356,3 +487,32 @@ export const postlike = async (req,res) => {
 export const getNotice = function (req,res) {
     res.render('notice',{pageTitle:'연고링'})
 }
+
+
+const paging = (page, totalPost) => {
+    const maxPost = 10; // (1)
+    const maxPage = 10; // (2)
+    let currentPage = page ? parseInt(page) : 1; // (3)
+    const hidePost = page === 1 ? 0 : (page - 1) * maxPost; // (4)
+    const totalPage = Math.ceil(totalPost / maxPost); // (5)
+
+    if (currentPage > totalPage) { // (6)
+        currentPage = totalPage;
+    }
+
+    const startPage = Math.floor(((currentPage - 1) / maxPage)) * maxPage + 1; // (7)
+    let endPage = startPage + maxPage - 1; // (8)
+
+    if (endPage > totalPage) { // (9)
+        endPage = totalPage;
+    }
+
+    return {
+        startPage,
+        endPage,
+        hidePost,
+        maxPost,
+        totalPage,
+        currentPage
+    }; // (10)
+};

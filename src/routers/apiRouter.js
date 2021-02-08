@@ -11,7 +11,7 @@ const apiRouter  = express.Router();
 apiRouter.get(routes.userData, sendUserData)
 apiRouter.post(routes.postlike, postlike)
 apiRouter.post(routes.addLike, like);
-apiRouter.post(routes.filter, filtering);
+
 apiRouter.post(routes.postDelete,deletePosting)
 
 export default apiRouter;

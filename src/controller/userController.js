@@ -5,6 +5,8 @@ import User from "../models/User"
 import passport from "passport"
 import session from "express-session"
 import Image from "../models/Image"
+import Post from "../models/Post"
+import nodemailer from "nodemailer"
 
 export const getJoin = async (req, res) => {
 
@@ -22,14 +24,19 @@ export const getJoin = async (req, res) => {
     });
 }
 export const getFJoin = async (req, res) => {
-    const user = await User.find({
-        sex: '여자'
-    });
+    const user = await User.countDocuments({sex:'여자'});
 
 
     res.render('fjoin', {
         pageTitle: 'Home',
         user
+    });
+}
+export const getNewJoin = async (req, res) => {
+
+
+    res.render('newJoin', {
+        pageTitle: 'Home'
     });
 }
 
@@ -46,7 +53,9 @@ export const postFJoin = async (req, res, next) => {
             style,
             email,
             password,
-            password2
+            password2,
+            location,
+            userEmail
         }
     } = req;
     if (password !== password2) {
@@ -57,19 +66,54 @@ export const postFJoin = async (req, res, next) => {
 
     } else {
         try {
-            const user = await User({
-                name,
-                email,
-                mbti,
-                description,
-                sex,
-                link,
-                univ,
-                age,
-                style
-            });
-            User.register(user, password);
-            next();
+            
+            let webMails = ["snu.ac.kr","korea.ac.kr","yonsei.ac.kr","skku.edu","sogang.ac.kr","hanyang.ac.kr","cau.ac.kr","khu.ac.kr","hufs.ac.kr",
+        "uos.ac.kr","ewha.ac.kr"]
+
+            console.log("이메일인증시작")
+            if(webMails.includes(userEmail.split("@")[1])){
+                const user = await User({
+                    name,
+                    email,
+                    mbti,
+                    description,
+                    sex,
+                    link,
+                    univ,
+                    age,
+                    style,
+                    location
+                });
+                User.register(user, password);
+                console.log("이메일인증")
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                      user: 'qkr5882103@gmail.com',
+                      pass: '960529hh@@'
+                    }
+                  });
+                  
+                  var mailOptions = {
+                    from: 'qkr5882103@gmail.com',
+                    to: `${userEmail}`,
+                    subject: '연고링',
+                    text: `ID: ${email} PWD: ${password}`
+                  };
+                  
+                  transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      
+                      console.log('Email sent: ' + info.response);
+                    }
+                  });
+                  res.redirect(routes.login)
+            }else{
+                res.redirect(routes.fjoin)
+            }
+            
         } catch (error) {
             console.log(error);
             res.redirect(routes.home)
@@ -81,9 +125,11 @@ export const postFJoin = async (req, res, next) => {
 }
 
 export const loginTest = async (req,res) => {
+    const userList = [];
 
-    const userList =[];
     try{
+        
+
         for(let k of userList){
             const user = await User({
                 name : k.name,
@@ -120,7 +166,8 @@ export const postJoin = async (req, res, next) => {
             style,
             email,
             password,
-            password2
+            password2,
+            userEmail
         }
     } = req;
     if (password !== password2) {
@@ -143,6 +190,39 @@ export const postJoin = async (req, res, next) => {
                 style
             });
             User.register(user, password);
+
+            let webMails = ["snu.ac.kr","korea.ac.kr","yonsei.ac.kr","skku.edu","sogang.ac.kr","hanyang.ac.kr","cau.ac.kr","khu.ac.kr","hufs.ac.kr",
+        "uos.ac.kr"]
+
+            console.log("이메일인증시작")
+            if(webMails.includes(userEmail.split("@")[1])){
+                console.log("이메일인증")
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                      user: 'smp2103@yonsei.ac.kr',
+                      pass: '960529hh@@'
+                    }
+                  });
+                  
+                  var mailOptions = {
+                    from: 'smp2103@yonsei.ac.kr',
+                    to: `${userEmail}`,
+                    subject: '연고링',
+                    text: `ID: ${email} PWD: ${password}`
+                  };
+                  
+                  transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      console.log('Email sent: ' + info.response);
+                    }
+                  });
+            }else{
+                console.log('email error')
+            }
+            
             next();
         } catch (error) {
             console.log(error);
@@ -229,10 +309,12 @@ export const getMe = async (req, res) => {
             user,images
         });
     } catch (error) {
+        const m = await User.countDocuments({sex:'남자'})
+        const fm = await User.countDocuments({sex:'여자'})
         res.render('userDetail', {
             pageTitle: 'User Details',
             user: [],
-            images: []
+            images: [],m,fm
         });
     }
 }
@@ -271,7 +353,9 @@ export const postEditProfile = async (req, res) => {
             description,
             style,
             age,
-            link
+            link,
+            locat,
+            hide
         },
         file
     } = req;
@@ -284,7 +368,9 @@ export const postEditProfile = async (req, res) => {
             style,
             age,
             link,
-            avatarUrl: file ? file.location : req.user.avatarUrl
+            avatarUrl: file ? file.location : req.user.avatarUrl,
+            location : locat,
+            hide : hide ? hide : 'n'
         });
         res.redirect(routes.home);
     } catch (error) {
@@ -326,16 +412,25 @@ export const filtering = async (req, res) => {
         }
     } = req;
 
-    const users_univ = await User.find({
-        univ
-    })
-    const users_mbti = await User.find({
-        mbti
-    })
-    const users = await User.find({
-        univ,
-        mbti
-    })
+    if(univ==="" && mbti){
+
+        const users= await User.find({
+            mbti
+        })
+
+        res.render('newCommunity',{pageTitle:'연고링',users})
+    } else if(univ && mbti===""){
+        const users= await User.find({
+            univ
+        })
+
+        res.render('newCommunity',{pageTitle:'연고링',users})
+    } else if(univ && mbti){
+        const users = await User.where('univ',`${univ}`).where('mbti',`${mbti}`)
+
+
+        res.render('newCommunity',{pageTitle:'연고링',users})
+    }
 
 }
 
@@ -455,18 +550,37 @@ export const getAlbumDelete = async (req,res) => {
 }
 
 export const postAlbumDelete = async (req,res) => {
-    const {body:{userId,imageId}} = req;
-    const user = await User.findById(userId)
-    const image = await Image.findOneAndDelete(imageId);
 
-    const images = user.images
+    try{
+        const {body:{userId,imageId}} = req;
+        const user = await User.findById(userId)
+        await Image.findOneAndDelete(imageId);
 
-    if(images.includes(imageId)) {
-        images.splice(images.indexOf(imageId),1)
+        const images = user.images
+
+        if(images.includes(imageId)) {
+            images.splice(images.indexOf(imageId),1)
+            user.images.splice(user.images.indexOf(imageId),1)
+        }
+
+        user.save();
+        res.status(200).redirect(routes.userDetail(userId))
+    } catch(error){
+        
     }
-
-    user.save();
-
-    res.redirect(routes.me)
     
+    
+}
+
+export const postSearch = async(req,res) => {
+    const {body:{age1,age2,sex}} = req;
+    try{
+        
+        const users = await User.where('sex',`${sex}`).where('age').gte(parseInt(age1)-1).lte(parseInt(age2))
+        
+        res.render('search',{pageTitle:`검색`,users})
+        
+    } catch(error){
+        console.log(error)
+    }
 }

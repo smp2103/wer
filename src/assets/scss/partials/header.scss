@@ -10,7 +10,7 @@
         margin: 0 auto;
         align-items: center;
         padding : 10px;
-        grid-template-columns: 25% 45% 30%;
+        grid-template-columns: 25% 75%;
 
         
         .header__column {
@@ -29,13 +29,14 @@
             &:last-child {
                 width: 100%;
                 justify-items: end;
-                grid-column:3/4
+                grid-column:2/3
             }
             ul {
                 display:flex;
                 text-transform: uppercase;
                 font-weight: 600;
                 min-height: 20px;
+                justify-content: flex-end;
                 grid-gap:20px;
                 li{
                     text-align: center;
@@ -87,6 +88,40 @@ select{
     text-align-last: center;
   
     border-radius: 5px;
+  
+    border: solid 0.5px #b2b2b28c;
+
+    -webkit-appearance: none;
+    font-family: 'Noto Sans KR', sans-serif;
+
+    font-size: 10px;
+    text-align: center;
+  
+    font-weight: normal;
+  
+    font-stretch: normal;
+  
+    font-style: normal;
+  
+    line-height: normal;
+  
+    letter-spacing: normal;
+  
+    text-align: center;
+  
+    color: #000000;
+
+}
+
+.selectStyle{
+
+    margin-right:3px;
+
+    background-color: white;
+    text-align-last: center;
+  
+    border-radius: 5px;
+    width: 5em;
   
     border: solid 0.5px #b2b2b28c;
 

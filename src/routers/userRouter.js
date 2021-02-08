@@ -1,7 +1,7 @@
 // My탭 
 import express from "express";
 import routes from "../routes";
-import { changePassword, userDetail, getEditProfile, postEditProfile, getChangePassword, postChangePassword, message, likeUser, getAlbumUpload, postAlbumUpload, getAlbumDelete, postAlbumDelete } from "../controller/userController";
+import { changePassword, userDetail, getEditProfile, postEditProfile, getChangePassword, postChangePassword, message, likeUser, getAlbumUpload, postAlbumUpload, getAlbumDelete, postAlbumDelete, deleteUser } from "../controller/userController";
 import { onlyPrivate, uploadAvatar, uploadImage } from "../middlewares";
 import { getLove } from "../controller/postingController";
 
@@ -17,7 +17,7 @@ userRouter.get(`${routes.userDetail()}${routes.album}`,getAlbumUpload)
 userRouter.post(`${routes.userDetail()}${routes.album}`,onlyPrivate,uploadImage,postAlbumUpload)
 userRouter.get(`${routes.userDetail()}${routes.albumDelete}`, getAlbumDelete)
 userRouter.post(`${routes.userDetail()}${routes.albumDelete}`, postAlbumDelete)
-
+userRouter.post(routes.deleteUser,deleteUser)
 
 
 

@@ -11,13 +11,11 @@ block content
                     img.u-avatar(src=post.creator.avatarUrl)
                     button(class="postDate" style="display:none;" value=`${post.createdAt}`) 
                     .u-container
-                        .u-info #{post.creator.univ} / #{post.creator.mbti} / #{post.creator.age}살 / #{post.creator.sex}
+                        .u-info #{post.creator.univ} / #{post.creator.mbti} / #{post.creator.age}살 / #{post.creator.sex} / #{post.creator.location ? post.creator.location : ""}
                         .u-name #{post.creator.name}
                 a(href=`/users/${post.creator.id}`).post-description #{post.description}
                     div <br>
                     .date=timeForToday(post.createdAt)
-                    
-            
                 .u-likeButton
                     .like-wrapper
                         button(class="postlike", value = post.id )
@@ -25,6 +23,8 @@ block content
                             .likeNum #{post.like}
                         if loggedUser && post.creator.id === loggedUser.id
                             button(id="postDelete",class="delete" value = post.id) 삭제
+    if post.images[0]
+        img(src=post.images[0].fileUrl style="width:100%; height:auto;")
                     
     div(style="margin-bottom:7px;") 댓글
     .users#commentList(style="background-color:#f2f2f2")

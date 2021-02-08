@@ -2,6 +2,9 @@ extends layouts/main
 include mixins/albumList
 
 block content
+    
+    a(href=routes.me)
+        button.hearts 돌아가기
     each item in images
                 +albumList({
                     fileUrl: item.fileUrl,

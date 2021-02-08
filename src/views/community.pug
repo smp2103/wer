@@ -2,7 +2,6 @@ extends layouts/main
 include mixins/postingList
 block content
 
-
     if loggedUser
         .postings#postings
                     each item in posts
@@ -15,9 +14,40 @@ block content
                                 like : item.like,
                                 user : item.creator,
                                 createdAt : item.createdAt,
-                                comments : item.comments
+                                comments : item.comments,
+                                images : item.images
                             }) 
-        
+        .pageBox(style="display: flex;margin-top: 12px; justify-content: space-evenly")
+
+
+            if currentPage === endPage
+                a.pageBtn(href=`${routes.home}?page=${currentPage-1}`)
+                    button(style="border:1px solid; margin-right: 10px;text-align:center;")
+                        <i class="fas fa-caret-left"></i>
+                a.pageBtn(href=`${routes.home}?page=${currentPage+1}`)
+                    button(style="border:1px solid; margin-right: 10px;text-align:center;  display:none;")
+                        <i class="fas fa-caret-right"></i>
+            else
+                if currentPage === 1
+                    a.pageBtn(href=`${routes.home}?page=${currentPage-1}`)
+                        button(style="border:1px solid; margin-right: 10px;text-align:center;display:none;")
+                            <i class="fas fa-caret-left"></i>
+                    a.pageBtn(href=`${routes.home}?page=${currentPage+1}`)
+                        button(style="border:1px solid; margin-right: 10px;text-align:center;")
+                            <i class="fas fa-caret-right"></i>
+                else
+                    a.pageBtn(href=`${routes.home}?page=${currentPage-1}`)
+                        button(style="border:1px solid; margin-right: 10px;text-align:center;")
+                            <i class="fas fa-caret-left"></i>
+                    a.pageBtn(href=`${routes.home}?page=${currentPage+1}`)
+                        button(style="border:1px solid; margin-right: 10px;text-align:center;")
+                            <i class="fas fa-caret-right"></i>
+    else
+        .noticeText
+            div(style="line-height:3;") 연고링에는 현재 #{m}의 남성분, #{fm}의 여성분들이 이용중입니다! 현재는, MVP테스트로 서울대,고려대,연세대,서강대,한양대,성균관대,중앙대,경희대,외대,시립대,이대 학생들로만 진행중입니다 !
+        .qnaButton
+            a(href="https://open.kakao.com/o/sAMFlCPc")
+                button(style="width: 100%; margin: 0 auto;") 문의하기
 
 
 block cont

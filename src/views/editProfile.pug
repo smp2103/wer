@@ -9,6 +9,7 @@ block content
             #preview
             .fileUpload
                 label(for="avatar").default 프로필사진
+                //- button(id="setDefault" value="https://rppproto.s3.amazonaws.com/avatar/63ce26c871c4502ff6c957af909dc7df") 기본값
                 input(type="file",id="getFile",name="avatar", accept="image/*").rectangle
             .default.nickname 닉네임
             input(type="text",placeholder="Name",name="name",value =loggedUser.name).rectangle
@@ -20,10 +21,37 @@ block content
             input(type="text",name="style" ,placeholder="style" value=loggedUser.style).rectangle
             .default.age 나이
             input(type="text",name="age",placeholder="나이",value=loggedUser.age).rectangle
+            .default.age 지역
+            select(name='locat')
+                    option(value='' selected) 지역
+                    option(value='서울') 서울
+                    option(value='경기도') 경기도
+                    option(value="강원도") 강원도
+                    option(value="광주") 광주
+                    option(value="대구") 대구
+                    option(value="대전") 대전
+                    option(value="울산") 울산
+                    option(value="세종") 세종
+                    option(value="충청북도") 충청북도
+                    option(value="충청남도") 충청남도
+                    option(value="전라북도") 전라북도
+                    option(value="전라남도") 전라남도
+                    option(value="경상북도") 경상북도
+                    option(value="경상남도") 경상남도
+                    option(value="제주") 제주도
             .default.link 오카 링크
             input(type="text",name="link",placeholder="오픈카카오톡링크",value=loggedUser.link).rectangle
-
+            
+            .hideOption(style="margin-bottom: 10px;") 프로필 공개여부
+                select(name="hide")
+                    option(value='' selected) 선택
+                    option(value='y') 숨기기
+                    option(value='n') 보이기
             input(type="submit",value="Update Profile")
             .warning 19금적인 용어는 삼가주세요.
+            
+
+    a(href="https://open.kakao.com/o/sWKImPRc")
+        button(style="width:100%;") 회원 탈퇴 문의
 
     

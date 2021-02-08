@@ -15,6 +15,8 @@ const UserSchema = new mongoose.Schema({
     univ: String,
     style: String,
     age: String,
+    location:String,
+    hide: String,
     like : {
         type: Number,
         default: 0
@@ -61,6 +63,7 @@ const UserSchema = new mongoose.Schema({
             ref: "Post"
         }
     ],
+    hashtags: []
 });
 
 

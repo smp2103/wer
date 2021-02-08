@@ -1,0 +1,10 @@
+extends layouts/main
+
+
+block content
+    .delete-description
+        div 회원탈퇴시 연고링사이트에서 프로필이 삭제됩니다.
+        div 오픈카카오톡 프로필은 개인적으로 삭제해주셔야합니다.
+        
+    form(action=routes.deleteUser)
+        button 삭제
