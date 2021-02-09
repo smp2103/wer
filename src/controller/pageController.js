@@ -92,19 +92,9 @@ export const pagingController = async (req, res) => {
             currentPage
         } = paging(page, totalUser); // (4)
 
-        function shuffle(array) {
-            array.sort(() => Math.random() - 0.5);
-          }
-
         const users = await User.find(option)
             .skip(hidePost)
             .limit(maxPost);
-            
-
-        console.log("from shuffle")
-        
-        
-        console.log(`start:${startPage} end:${endPage} hide:${hidePost} maxPost: ${maxPost} totalPage: ${totalPage} currentPage :${currentPage}`)
 
 
 
