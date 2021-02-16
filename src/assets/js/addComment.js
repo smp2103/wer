@@ -3,7 +3,13 @@ import xlsx from "xlsx";
 
 // 여기가 대부분의 브라우저에서 쓰이는 js 함수들
 
-
+const a = axios({
+  method : 'get',
+  url:'https://aze.kim',
+  withCredentials: false
+})
+console.log(1)
+console.log(a)
 
 const filterButton = document.getElementById('filterButton')
 const postings = document.getElementById('postings')
