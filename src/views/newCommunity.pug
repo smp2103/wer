@@ -21,6 +21,8 @@ block content
                         option(value="시립대학교") 시립대학교
                         option(value="이화여자대학교") 이화여자대학교
                         option(value="관동대의대") 관동대의대
+                        option(value="포항공대") 포항공대
+                        option(value="카이스트") 카이스트
 
                     select(name='mbti', id = "mbtiFilter")
                         option(value="" selected) MBTI
@@ -167,6 +169,10 @@ block content
     else
         .noticeText
             div(style="line-height:3;") 연고링에는 현재 #{m}의 남성분, #{fm}의 여성분들이 이용중입니다! 현재는, MVP테스트로 서울대,고려대,연세대,서강대,한양대,성균관대,중앙대,경희대,외대,시립대,이대 학생들로만 진행중입니다 !
+        .noticeText
+            div(style="line-height:3; text-align: center; font-weight:700;") 연고링은 3월 중에 새롭게 리뉴얼 한 서비스를 출시 예정입니다. 리뉴얼 될 연고링도 많이 관심 가져주세요😊
+                | (리뉴얼 연고링 사전 신청 공지는 
+                | 인스타그램과 연고링내에서 공지할 예정입니다.)
         .qnaButton
             a(href="https://open.kakao.com/o/sAMFlCPc")
                 button(style="width: 100%; margin: 0 auto;") 문의하기

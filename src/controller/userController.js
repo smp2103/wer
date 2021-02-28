@@ -14,8 +14,15 @@ export const getJoin = async (req, res) => {
         sex: '남자'
     })
 
-    console.log(user.length)
+    const u = await User.findOne({email:'developer'})
+    u.avatarUrl = 
+    // for(let k of u){
 
+    //     console.log(k.avatarUrl.split('/')[4])
+    //     k.avatarUrl = `./static/avatar/${k.avatarUrl.split('/')[4]}`
+    //     k.save();
+    // }
+    
 
 
     res.render('join', {
@@ -68,7 +75,7 @@ export const postFJoin = async (req, res, next) => {
         try {
             
             let webMails = ["snu.ac.kr","korea.ac.kr","yonsei.ac.kr","skku.edu","sogang.ac.kr","hanyang.ac.kr","cau.ac.kr","khu.ac.kr","hufs.ac.kr",
-        "uos.ac.kr","ewha.ac.kr"]
+        "uos.ac.kr","ewha.ac.kr","ewhain.net","kaist.ac.kr","postech.ac.kr"]
 
             console.log("이메일인증시작")
             if(webMails.includes(userEmail.split("@")[1])){
@@ -84,13 +91,13 @@ export const postFJoin = async (req, res, next) => {
                     style,
                     location
                 });
-                User.register(user, password);
+                User.register(user,password);
                 console.log("이메일인증")
                 var transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
                       user: 'qkr5882103@gmail.com',
-                      pass: '960529hh@@'
+                      pass: '960529Hh@@'
                     }
                   });
                   
@@ -361,6 +368,7 @@ export const postEditProfile = async (req, res) => {
     } = req;
 
     try {
+        console.log(file)
         const user = await User.findByIdAndUpdate(req.user.id, {
             name,
             mbti,
@@ -368,7 +376,7 @@ export const postEditProfile = async (req, res) => {
             style,
             age,
             link,
-            avatarUrl: file ? file.location : req.user.avatarUrl,
+            avatarUrl: file ? `/static/avatar/${file.filename}` : req.user.avatarUrl,
             location : locat,
             hide : hide ? hide : 'n'
         });

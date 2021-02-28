@@ -4,7 +4,10 @@ require('mongoose-type-url')
 
 const UserSchema = new mongoose.Schema({
     name: String,
-    email: String,
+    email: {
+        type: String,
+        unique: true
+    },
     avatarUrl : {type: String, default: "https://rppproto.s3.amazonaws.com/avatar/63ce26c871c4502ff6c957af909dc7df"},
     facebookId: Number,
     githubId : Number,

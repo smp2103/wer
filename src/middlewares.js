@@ -17,18 +17,12 @@ const multerVideo = multer({
     })
 })
 const multerAvatar = multer({
-    storage: multerS3({
-        s3,
-        acl: 'public-read',
-        bucket: "rppproto/avatar"
-    })
+    dest: "src/static/avatar",
+    limits: { fileSize: 5 * 1024 * 1024 }
 })
 const multerImage = multer({
-    storage: multerS3({
-        s3,
-        acl: 'public-read',
-        bucket: "rppproto/image"
-    })
+    dest: "/avatar",
+    limits: { fileSize: 5 * 1024 * 1024 }
 })
 
 export const uploadVideo = multerVideo.single("videoFile");

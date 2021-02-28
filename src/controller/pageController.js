@@ -54,9 +54,9 @@ export const pagingController = async (req, res) => {
             return `${betweenTimeDay}일전`;
         } else if(betweenTimeDay > 2){
             if(timeValue.getMinutes()<10){
-                return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:0${timeValue.getMinutes()}`
+                return `${timeValue.getMonth()+1}/${timeValue.getDate()} ${timeValue.getHours()}:0${timeValue.getMinutes()}`
             }
-            return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:${timeValue.getMinutes()}`
+            return `${timeValue.getMonth()+1}/${timeValue.getDate()} ${timeValue.getHours()}:${timeValue.getMinutes()}`
         }
 
         return `${Math.floor(betweenTimeDay / 365)}년전`;
@@ -173,9 +173,9 @@ export const pagingController2 = async (req, res) => {
             return `${betweenTimeDay}일전`;
         } else if(betweenTimeDay > 2){
             if(timeValue.getMinutes()<10){
-                return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:0${timeValue.getMinutes()}`
+                return `${timeValue.getMonth()+1}/${timeValue.getDate()} ${timeValue.getHours()}:0${timeValue.getMinutes()}`
             }
-            return `${timeValue.getMonth()+1}/${timeValue.getDay()} ${timeValue.getHours()}:${timeValue.getMinutes()}`
+            return `${timeValue.getMonth()+1}/${timeValue.getDate()} ${timeValue.getHours()}:${timeValue.getMinutes()}`
         }
 
         return `${Math.floor(betweenTimeDay / 365)}년전`;

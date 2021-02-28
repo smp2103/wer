@@ -44,10 +44,19 @@ block content
                             <i class="fas fa-caret-right"></i>
     else
         .noticeText
-            div(style="line-height:3;") 연고링에는 현재 #{m}의 남성분, #{fm}의 여성분들이 이용중입니다! 현재는, MVP테스트로 서울대,고려대,연세대,서강대,한양대,성균관대,중앙대,경희대,외대,시립대,이대 학생들로만 진행중입니다 !
-        .qnaButton
+            div(style="line-height:3; text-align: center;") 연고링에는 현재 #{m}의 남성분, #{fm}의 여성분들이 이용중입니다! 현재는, MVP테스트로 서울대,고려대,연세대,서강대,한양대,성균관대,중앙대,경희대,외대,시립대,이대 학생들로만 진행중입니다 !
+        .noticeText
+            div(style="line-height:3; text-align: center; font-weight:700;") 연고링은 3월 중에 새롭게 리뉴얼 한 서비스를 출시 예정입니다. 리뉴얼 될 연고링도 많이 관심 가져주세요😊
+                | (리뉴얼 연고링 사전 신청 공지는 
+                | 인스타그램과 연고링내에서 공지할 예정입니다.)
+
+        .qnaButton(style="width: 300px; margin:0 auto;")
             a(href="https://open.kakao.com/o/sAMFlCPc")
-                button(style="width: 100%; margin: 0 auto;") 문의하기
+                button(style="width: 300px; margin: 0 auto; border: 1px solid") 문의하기
+
+        .qnaButton(style="width: 300px; margin:0 auto;")
+            a(href="https://www.instagram.com/ykring_official/" style="display:block")
+                button(style="width: 300px; margin: 0 auto; margin-top : 20px; border: 1px solid") Instagram
 
 
 block cont
